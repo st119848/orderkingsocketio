@@ -1,3 +1,8 @@
-# orderking-api
+# Orderking API
 
-[![LoopBack](https://github.com/strongloop/loopback-next/raw/master/docs/site/imgs/branding/Powered-by-LoopBack-Badge-(blue)-@2x.png)](http://loopback.io/)
+API for Orderking mobile and web application.
+
+## Authors
+
+1. Piyawat Setthitikun
+2. Natawat Kwanpoom
