@@ -21,7 +21,7 @@ import {
 } from '../models';
 import {StationRepository} from '../repositories';
 
-export class StationProductController {
+export class ProductController {
   constructor(
     @repository(StationRepository) protected stationRepository: StationRepository,
   ) { }
