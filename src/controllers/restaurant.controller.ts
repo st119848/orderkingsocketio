@@ -47,20 +47,6 @@ export class RestaurantController {
     return this.restaurantRepository.create(restaurant);
   }
 
-  @get('/restaurants/count', {
-    responses: {
-      '200': {
-        description: 'Restaurant model count',
-        content: {'application/json': {schema: CountSchema}},
-      },
-    },
-  })
-  async count(
-    @param.query.object('where', getWhereSchemaFor(Restaurant)) where?: Where<Restaurant>,
-  ): Promise<Count> {
-    return this.restaurantRepository.count(where);
-  }
-
   @get('/restaurants', {
     responses: {
       '200': {
@@ -77,28 +63,6 @@ export class RestaurantController {
     @param.query.object('filter', getFilterSchemaFor(Restaurant)) filter?: Filter<Restaurant>,
   ): Promise<Restaurant[]> {
     return this.restaurantRepository.find(filter);
-  }
-
-  @patch('/restaurants', {
-    responses: {
-      '200': {
-        description: 'Restaurant PATCH success count',
-        content: {'application/json': {schema: CountSchema}},
-      },
-    },
-  })
-  async updateAll(
-    @requestBody({
-      content: {
-        'application/json': {
-          schema: getModelSchemaRef(Restaurant, {partial: true}),
-        },
-      },
-    })
-    restaurant: Restaurant,
-    @param.query.object('where', getWhereSchemaFor(Restaurant)) where?: Where<Restaurant>,
-  ): Promise<Count> {
-    return this.restaurantRepository.updateAll(restaurant, where);
   }
 
   @get('/restaurants/{id}', {
@@ -132,20 +96,6 @@ export class RestaurantController {
     restaurant: Restaurant,
   ): Promise<void> {
     await this.restaurantRepository.updateById(id, restaurant);
-  }
-
-  @put('/restaurants/{id}', {
-    responses: {
-      '204': {
-        description: 'Restaurant PUT success',
-      },
-    },
-  })
-  async replaceById(
-    @param.path.number('id') id: number,
-    @requestBody() restaurant: Restaurant,
-  ): Promise<void> {
-    await this.restaurantRepository.replaceById(id, restaurant);
   }
 
   @del('/restaurants/{id}', {

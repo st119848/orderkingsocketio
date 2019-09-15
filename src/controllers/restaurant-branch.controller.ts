@@ -21,7 +21,7 @@ import {
 } from '../models';
 import {RestaurantRepository} from '../repositories';
 
-export class RestaurantBranchController {
+export class BranchController {
   constructor(
     @repository(RestaurantRepository) protected restaurantRepository: RestaurantRepository,
   ) { }

@@ -1,5 +1,6 @@
 import {Entity, model, property, hasMany} from '@loopback/repository';
 import {Station} from './station.model';
+import {Table} from './table.model';
 
 @model({settings: {}})
 export class Branch extends Entity {
@@ -72,6 +73,9 @@ export class Branch extends Entity {
 
   @hasMany(() => Station)
   stations: Station[];
+
+  @hasMany(() => Table)
+  tables: Table[];
 
   constructor(data?: Partial<Branch>) {
     super(data);

@@ -7,3 +7,4 @@ export * from './product-option.model';
 export * from './product-option-choice.model';
 export * from './branch.model';
 export * from './station.model';
+export * from './table.model';

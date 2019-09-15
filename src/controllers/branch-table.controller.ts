@@ -17,22 +17,22 @@ import {
 } from '@loopback/rest';
 import {
   Branch,
-  Station,
+  Table,
 } from '../models';
 import {BranchRepository} from '../repositories';
 
-export class StationController {
+export class TableController {
   constructor(
     @repository(BranchRepository) protected branchRepository: BranchRepository,
   ) { }
 
-  @get('/branches/{id}/stations', {
+  @get('/branches/{id}/tables', {
     responses: {
       '200': {
-        description: 'Array of Station\'s belonging to Branch',
+        description: 'Array of Table\'s belonging to Branch',
         content: {
           'application/json': {
-            schema: {type: 'array', items: getModelSchemaRef(Station)},
+            schema: {type: 'array', items: getModelSchemaRef(Table)},
           },
         },
       },
@@ -40,16 +40,16 @@ export class StationController {
   })
   async find(
     @param.path.number('id') id: number,
-    @param.query.object('filter') filter?: Filter<Station>,
-  ): Promise<Station[]> {
-    return this.branchRepository.stations(id).find(filter);
+    @param.query.object('filter') filter?: Filter<Table>,
+  ): Promise<Table[]> {
+    return this.branchRepository.tables(id).find(filter);
   }
 
-  @post('/branches/{id}/stations', {
+  @post('/branches/{id}/tables', {
     responses: {
       '200': {
         description: 'Branch model instance',
-        content: {'application/json': {schema: getModelSchemaRef(Station)}},
+        content: {'application/json': {schema: getModelSchemaRef(Table)}},
       },
     },
   })
@@ -58,21 +58,21 @@ export class StationController {
     @requestBody({
       content: {
         'application/json': {
-          schema: getModelSchemaRef(Station, {
+          schema: getModelSchemaRef(Table, {
             exclude: ['id'],
             optional: ['branchId']
           }),
         },
       },
-    }) station: Omit<Station, 'id'>,
-  ): Promise<Station> {
-    return this.branchRepository.stations(id).create(station);
+    }) table: Omit<Table, 'id'>,
+  ): Promise<Table> {
+    return this.branchRepository.tables(id).create(table);
   }
 
-  @patch('/branches/{id}/stations', {
+  @patch('/branches/{id}/tables', {
     responses: {
       '200': {
-        description: 'Branch.Station PATCH success count',
+        description: 'Branch.Table PATCH success count',
         content: {'application/json': {schema: CountSchema}},
       },
     },
@@ -82,28 +82,28 @@ export class StationController {
     @requestBody({
       content: {
         'application/json': {
-          schema: getModelSchemaRef(Station, {partial: true}),
+          schema: getModelSchemaRef(Table, {partial: true}),
         },
       },
     })
-    station: Partial<Station>,
-    @param.query.object('where', getWhereSchemaFor(Station)) where?: Where<Station>,
+    table: Partial<Table>,
+    @param.query.object('where', getWhereSchemaFor(Table)) where?: Where<Table>,
   ): Promise<Count> {
-    return this.branchRepository.stations(id).patch(station, where);
+    return this.branchRepository.tables(id).patch(table, where);
   }
 
-  @del('/branches/{id}/stations', {
+  @del('/branches/{id}/tables', {
     responses: {
       '200': {
-        description: 'Branch.Station DELETE success count',
+        description: 'Branch.Table DELETE success count',
         content: {'application/json': {schema: CountSchema}},
       },
     },
   })
   async delete(
     @param.path.number('id') id: number,
-    @param.query.object('where', getWhereSchemaFor(Station)) where?: Where<Station>,
+    @param.query.object('where', getWhereSchemaFor(Table)) where?: Where<Table>,
   ): Promise<Count> {
-    return this.branchRepository.stations(id).delete(where);
+    return this.branchRepository.tables(id).delete(where);
   }
 }

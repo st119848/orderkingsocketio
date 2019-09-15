@@ -7,3 +7,4 @@ export * from './product-option.repository';
 export * from './product.repository';
 export * from './station.repository';
 export * from './branch.repository';
+export * from './table.repository';

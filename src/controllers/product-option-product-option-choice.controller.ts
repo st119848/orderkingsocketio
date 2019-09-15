@@ -21,7 +21,7 @@ import {
 } from '../models';
 import {ProductOptionRepository} from '../repositories';
 
-export class ProductOptionProductOptionChoiceController {
+export class ProductOptionChoiceController {
   constructor(
     @repository(ProductOptionRepository) protected productOptionRepository: ProductOptionRepository,
   ) { }

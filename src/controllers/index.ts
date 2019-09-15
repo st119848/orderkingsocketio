@@ -10,3 +10,4 @@ export * from './product-option-product-option-choice.controller';
 export * from './station-product.controller';
 export * from './branch-station.controller';
 export * from './branch-station.controller';
+export * from './branch-table.controller';

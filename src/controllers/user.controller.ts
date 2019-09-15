@@ -47,20 +47,6 @@ export class UserController {
     return this.userRepository.create(user);
   }
 
-  @get('/users/count', {
-    responses: {
-      '200': {
-        description: 'User model count',
-        content: {'application/json': {schema: CountSchema}},
-      },
-    },
-  })
-  async count(
-    @param.query.object('where', getWhereSchemaFor(User)) where?: Where<User>,
-  ): Promise<Count> {
-    return this.userRepository.count(where);
-  }
-
   @get('/users', {
     responses: {
       '200': {
@@ -77,28 +63,6 @@ export class UserController {
     @param.query.object('filter', getFilterSchemaFor(User)) filter?: Filter<User>,
   ): Promise<User[]> {
     return this.userRepository.find(filter);
-  }
-
-  @patch('/users', {
-    responses: {
-      '200': {
-        description: 'User PATCH success count',
-        content: {'application/json': {schema: CountSchema}},
-      },
-    },
-  })
-  async updateAll(
-    @requestBody({
-      content: {
-        'application/json': {
-          schema: getModelSchemaRef(User, {partial: true}),
-        },
-      },
-    })
-    user: User,
-    @param.query.object('where', getWhereSchemaFor(User)) where?: Where<User>,
-  ): Promise<Count> {
-    return this.userRepository.updateAll(user, where);
   }
 
   @get('/users/{id}', {
@@ -132,20 +96,6 @@ export class UserController {
     user: User,
   ): Promise<void> {
     await this.userRepository.updateById(id, user);
-  }
-
-  @put('/users/{id}', {
-    responses: {
-      '204': {
-        description: 'User PUT success',
-      },
-    },
-  })
-  async replaceById(
-    @param.path.number('id') id: number,
-    @requestBody() user: User,
-  ): Promise<void> {
-    await this.userRepository.replaceById(id, user);
   }
 
   @del('/users/{id}', {

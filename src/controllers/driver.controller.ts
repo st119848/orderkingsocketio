@@ -1,9 +1,6 @@
 import {
-  Count,
-  CountSchema,
   Filter,
   repository,
-  Where,
 } from '@loopback/repository';
 import {
   post,
@@ -11,9 +8,7 @@ import {
   get,
   getFilterSchemaFor,
   getModelSchemaRef,
-  getWhereSchemaFor,
   patch,
-  put,
   del,
   requestBody,
 } from '@loopback/rest';
@@ -53,20 +48,6 @@ export class DriverController {
     return this.driverRepository.create(driver);
   }
 
-  @get('/drivers/count', {
-    responses: {
-      '200': {
-        description: 'Driver model count',
-        content: {'application/json': {schema: CountSchema}},
-      },
-    },
-  })
-  async count(
-    @param.query.object('where', getWhereSchemaFor(Driver)) where?: Where<Driver>,
-  ): Promise<Count> {
-    return this.driverRepository.count(where);
-  }
-
   @get('/drivers', {
     responses: {
       '200': {
@@ -83,28 +64,6 @@ export class DriverController {
     @param.query.object('filter', getFilterSchemaFor(Driver)) filter?: Filter<Driver>,
   ): Promise<Driver[]> {
     return this.driverRepository.find(filter);
-  }
-
-  @patch('/drivers', {
-    responses: {
-      '200': {
-        description: 'Driver PATCH success count',
-        content: {'application/json': {schema: CountSchema}},
-      },
-    },
-  })
-  async updateAll(
-    @requestBody({
-      content: {
-        'application/json': {
-          schema: getModelSchemaRef(Driver, {partial: true}),
-        },
-      },
-    })
-    driver: Driver,
-    @param.query.object('where', getWhereSchemaFor(Driver)) where?: Where<Driver>,
-  ): Promise<Count> {
-    return this.driverRepository.updateAll(driver, where);
   }
 
   @get('/drivers/{id}', {
@@ -138,20 +97,6 @@ export class DriverController {
     driver: Driver,
   ): Promise<void> {
     await this.driverRepository.updateById(id, driver);
-  }
-
-  @put('/drivers/{id}', {
-    responses: {
-      '204': {
-        description: 'Driver PUT success',
-      },
-    },
-  })
-  async replaceById(
-    @param.path.number('id') id: number,
-    @requestBody() driver: Driver,
-  ): Promise<void> {
-    await this.driverRepository.replaceById(id, driver);
   }
 
   @del('/drivers/{id}', {
