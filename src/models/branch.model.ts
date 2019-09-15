@@ -36,7 +36,7 @@ export class Branch extends Entity {
   address: string;
 
   @property({
-    type: 'geopoint',
+    type: 'string',
     required: true,
   })
   location: string;
@@ -48,7 +48,7 @@ export class Branch extends Entity {
 
   @property({
     type: 'object',
-    default: opening_hour,
+    default: [],
   })
   covered_photos?: object;
 
