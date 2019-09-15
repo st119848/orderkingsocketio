@@ -1,4 +1,5 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, hasMany} from '@loopback/repository';
+import {ProductOptionChoice} from './product-option-choice.model';
 
 @model({settings: {}})
 export class ProductOption extends Entity {
@@ -21,6 +22,13 @@ export class ProductOption extends Entity {
   })
   option_type: string;
 
+  @property({
+    type: 'number',
+  })
+  productId?: number;
+
+  @hasMany(() => ProductOptionChoice)
+  productOptionChoices: ProductOptionChoice[];
 
   constructor(data?: Partial<ProductOption>) {
     super(data);

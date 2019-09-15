@@ -1,4 +1,5 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, hasMany} from '@loopback/repository';
+import {Branch} from './branch.model';
 
 @model({settings: {}})
 export class Restaurant extends Entity {
@@ -39,6 +40,8 @@ export class Restaurant extends Entity {
   })
   password: string;
 
+  @hasMany(() => Branch)
+  branches: Branch[];
 
   constructor(data?: Partial<Restaurant>) {
     super(data);

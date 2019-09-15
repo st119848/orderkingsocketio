@@ -21,6 +21,10 @@ export class ProductOptionChoice extends Entity {
   })
   price: number;
 
+  @property({
+    type: 'number',
+  })
+  productOptionId?: number;
 
   constructor(data?: Partial<ProductOptionChoice>) {
     super(data);
