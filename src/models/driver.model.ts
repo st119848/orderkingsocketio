@@ -8,7 +8,6 @@ export class Driver extends Entity {
   @property({
     type: 'number',
     id: true,
-    required: true,
     generated: true,
   })
   id: number;
