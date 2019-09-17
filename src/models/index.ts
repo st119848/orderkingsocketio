@@ -10,3 +10,4 @@ export * from './station.model';
 export * from './table.model';
 export * from './printer.model';
 export * from './print-layout.model';
+export * from './restaurant-reward.model';

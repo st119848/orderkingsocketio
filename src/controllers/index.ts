@@ -21,3 +21,5 @@ export * from './branch-printer.controller';
 export * from './printer.controller';
 export * from './branch-print-layout.controller';
 export * from './print-layout.controller';
+export * from './restaurant-restaurant-reward.controller';
+export * from './restaurant-reward.controller';

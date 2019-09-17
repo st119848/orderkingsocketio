@@ -1,5 +1,6 @@
 import {Entity, model, property, hasMany} from '@loopback/repository';
 import {Branch} from './branch.model';
+import {RestaurantReward} from './restaurant-reward.model';
 
 @model({settings: {}})
 export class Restaurant extends Entity {
@@ -41,6 +42,9 @@ export class Restaurant extends Entity {
 
   @hasMany(() => Branch)
   branches: Branch[];
+
+  @hasMany(() => RestaurantReward)
+  restaurantRewards: RestaurantReward[];
 
   constructor(data?: Partial<Restaurant>) {
     super(data);

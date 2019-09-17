@@ -10,3 +10,4 @@ export * from './branch.repository';
 export * from './table.repository';
 export * from './printer.repository';
 export * from './print-layout.repository';
+export * from './restaurant-reward.repository';
