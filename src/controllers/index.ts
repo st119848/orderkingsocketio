@@ -17,3 +17,7 @@ export * from './product-option.controller';
 export * from './product.controller';
 export * from './station.controller';
 export * from './table.controller';
+export * from './branch-printer.controller';
+export * from './printer.controller';
+export * from './branch-print-layout.controller';
+export * from './print-layout.controller';

@@ -1,6 +1,8 @@
 import {Entity, model, property, hasMany} from '@loopback/repository';
 import {Station} from './station.model';
 import {Table} from './table.model';
+import {Printer} from './printer.model';
+import {PrintLayout} from './print-layout.model';
 
 @model({settings: {}})
 export class Branch extends Entity {
@@ -76,6 +78,12 @@ export class Branch extends Entity {
 
   @hasMany(() => Table)
   tables: Table[];
+
+  @hasMany(() => Printer)
+  printers: Printer[];
+
+  @hasMany(() => PrintLayout)
+  printLayouts: PrintLayout[];
 
   constructor(data?: Partial<Branch>) {
     super(data);

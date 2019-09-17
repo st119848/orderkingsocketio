@@ -8,3 +8,5 @@ export * from './product-option-choice.model';
 export * from './branch.model';
 export * from './station.model';
 export * from './table.model';
+export * from './printer.model';
+export * from './print-layout.model';
