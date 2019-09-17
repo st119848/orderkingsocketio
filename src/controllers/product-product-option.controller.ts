@@ -12,16 +12,14 @@ import {
   getWhereSchemaFor,
   param,
   patch,
-  post,
   requestBody,
 } from '@loopback/rest';
 import {
-  Product,
   ProductOption,
 } from '../models';
 import {ProductRepository} from '../repositories';
 
-export class ProductOptionController {
+export class ProductProductOptionController {
   constructor(
     @repository(ProductRepository) protected productRepository: ProductRepository,
   ) { }
@@ -43,30 +41,6 @@ export class ProductOptionController {
     @param.query.object('filter') filter?: Filter<ProductOption>,
   ): Promise<ProductOption[]> {
     return this.productRepository.productOptions(id).find(filter);
-  }
-
-  @post('/products/{id}/product-options', {
-    responses: {
-      '200': {
-        description: 'Product model instance',
-        content: {'application/json': {schema: getModelSchemaRef(ProductOption)}},
-      },
-    },
-  })
-  async create(
-    @param.path.number('id') id: typeof Product.prototype.id,
-    @requestBody({
-      content: {
-        'application/json': {
-          schema: getModelSchemaRef(ProductOption, {
-            exclude: ['id'],
-            optional: ['productId']
-          }),
-        },
-      },
-    }) productOption: Omit<ProductOption, 'id'>,
-  ): Promise<ProductOption> {
-    return this.productRepository.productOptions(id).create(productOption);
   }
 
   @patch('/products/{id}/product-options', {

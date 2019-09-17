@@ -3,11 +3,11 @@ import {Entity, model, property} from '@loopback/repository';
 @model({settings: {}})
 export class ProductOptionChoice extends Entity {
   @property({
-    type: 'string',
+    type: 'number',
     id: true,
-    required: true,
+    generated: true,
   })
-  id: string;
+  id: number;
 
   @property({
     type: 'string',

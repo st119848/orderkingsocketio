@@ -7,7 +7,7 @@ export class Branch extends Entity {
   @property({
     type: 'number',
     id: true,
-    required: true,
+    generated: true,
   })
   id: number;
 

@@ -12,16 +12,14 @@ import {
   getWhereSchemaFor,
   param,
   patch,
-  post,
   requestBody,
 } from '@loopback/rest';
 import {
-  Branch,
   Table,
 } from '../models';
 import {BranchRepository} from '../repositories';
 
-export class TableController {
+export class BranchTableController {
   constructor(
     @repository(BranchRepository) protected branchRepository: BranchRepository,
   ) { }
@@ -43,30 +41,6 @@ export class TableController {
     @param.query.object('filter') filter?: Filter<Table>,
   ): Promise<Table[]> {
     return this.branchRepository.tables(id).find(filter);
-  }
-
-  @post('/branches/{id}/tables', {
-    responses: {
-      '200': {
-        description: 'Branch model instance',
-        content: {'application/json': {schema: getModelSchemaRef(Table)}},
-      },
-    },
-  })
-  async create(
-    @param.path.number('id') id: typeof Branch.prototype.id,
-    @requestBody({
-      content: {
-        'application/json': {
-          schema: getModelSchemaRef(Table, {
-            exclude: ['id'],
-            optional: ['branchId']
-          }),
-        },
-      },
-    }) table: Omit<Table, 'id'>,
-  ): Promise<Table> {
-    return this.branchRepository.tables(id).create(table);
   }
 
   @patch('/branches/{id}/tables', {

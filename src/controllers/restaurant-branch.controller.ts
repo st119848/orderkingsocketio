@@ -12,16 +12,14 @@ import {
   getWhereSchemaFor,
   param,
   patch,
-  post,
   requestBody,
 } from '@loopback/rest';
 import {
-  Restaurant,
   Branch,
 } from '../models';
 import {RestaurantRepository} from '../repositories';
 
-export class BranchController {
+export class RestaurantBranchController {
   constructor(
     @repository(RestaurantRepository) protected restaurantRepository: RestaurantRepository,
   ) { }
@@ -43,30 +41,6 @@ export class BranchController {
     @param.query.object('filter') filter?: Filter<Branch>,
   ): Promise<Branch[]> {
     return this.restaurantRepository.branches(id).find(filter);
-  }
-
-  @post('/restaurants/{id}/branches', {
-    responses: {
-      '200': {
-        description: 'Restaurant model instance',
-        content: {'application/json': {schema: getModelSchemaRef(Branch)}},
-      },
-    },
-  })
-  async create(
-    @param.path.number('id') id: typeof Restaurant.prototype.id,
-    @requestBody({
-      content: {
-        'application/json': {
-          schema: getModelSchemaRef(Branch, {
-            exclude: ['id'],
-            optional: ['restaurantId']
-          }),
-        },
-      },
-    }) branch: Omit<Branch, 'id'>,
-  ): Promise<Branch> {
-    return this.restaurantRepository.branches(id).create(branch);
   }
 
   @patch('/restaurants/{id}/branches', {
