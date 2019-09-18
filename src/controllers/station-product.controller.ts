@@ -45,30 +45,6 @@ export class StationProductController {
     return this.stationRepository.products(id).find(filter);
   }
 
-  @post('/stations/{id}/products', {
-    responses: {
-      '200': {
-        description: 'Station model instance',
-        content: {'application/json': {schema: getModelSchemaRef(Product)}},
-      },
-    },
-  })
-  async create(
-    @param.path.number('id') id: typeof Station.prototype.id,
-    @requestBody({
-      content: {
-        'application/json': {
-          schema: getModelSchemaRef(Product, {
-            exclude: ['id'],
-            optional: ['stationId']
-          }),
-        },
-      },
-    }) product: Omit<Product, 'id'>,
-  ): Promise<Product> {
-    return this.stationRepository.products(id).create(product);
-  }
-
   @patch('/stations/{id}/products', {
     responses: {
       '200': {
