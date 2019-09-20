@@ -37,3 +37,4 @@ export * from './credit-card.controller';
 export * from './driver-bank-account.controller';
 export * from './product-product-media.controller';
 export * from './product-media.controller';
+export * from './customer-credit-card.controller';

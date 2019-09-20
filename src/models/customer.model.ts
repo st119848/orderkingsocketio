@@ -1,6 +1,7 @@
-import {belongsTo, model, property, Entity} from '@loopback/repository';
+import {belongsTo, model, property, Entity, hasMany} from '@loopback/repository';
 import {User} from '.';
 import { UserWithRelations } from './user.model';
+import {CreditCard} from './credit-card.model';
 
 @model({settings: {}})
 
@@ -22,6 +23,9 @@ export class Customer extends Entity {
     type: 'number',
   })
   userId?: number;
+
+  @hasMany(() => CreditCard)
+  creditCards: CreditCard[];
 
   constructor(data?: Partial<Customer>) {
     super(data);

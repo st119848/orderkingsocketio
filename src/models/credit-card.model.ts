@@ -44,6 +44,11 @@ export class CreditCard extends Entity {
   })
   branchId?: number;
 
+  @property({
+    type: 'number',
+  })
+  customerId?: number;
+
   constructor(data?: Partial<CreditCard>) {
     super(data);
   }
