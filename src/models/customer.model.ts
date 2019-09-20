@@ -18,16 +18,17 @@ export class Customer extends Entity {
   })
   name: string;
 
+  @property({
+    type: 'number',
+  })
+  userId?: number;
+
   constructor(data?: Partial<Customer>) {
     super(data);
   }
-
-  @belongsTo(() => User,{keyTo:'pk'})
-  userId: number
 }
 
 export interface CustomerRelations {
-  user?: UserWithRelations
 }
 
 export type CustomerWithRelations = Customer & CustomerRelations;

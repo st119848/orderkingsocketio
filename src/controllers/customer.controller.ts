@@ -1,6 +1,9 @@
 import {
+  Count,
+  CountSchema,
   Filter,
   repository,
+  Where,
 } from '@loopback/repository';
 import {
   post,
@@ -8,24 +11,20 @@ import {
   get,
   getFilterSchemaFor,
   getModelSchemaRef,
+  getWhereSchemaFor,
   patch,
+  put,
   del,
   requestBody,
 } from '@loopback/rest';
-import {Customer, User} from '../models';
+import {Customer} from '../models';
 import {CustomerRepository} from '../repositories';
 
 export class CustomerController {
   constructor(
-    @repository(CustomerRepository) protected customerRepository : CustomerRepository,
+    @repository(CustomerRepository)
+    public customerRepository : CustomerRepository,
   ) {}
-
-  @get('/customer/{id}/users')
-  async getUser(
-    @param.path.number('id') customerId: typeof Customer.prototype.id,
-  ): Promise<User> {
-    return this.customerRepository.user(customerId);
-  }
 
   @post('/customers', {
     responses: {

@@ -11,3 +11,8 @@ export * from './table.model';
 export * from './printer.model';
 export * from './print-layout.model';
 export * from './restaurant-reward.model';
+export * from './employee.model';
+export * from './group.model';
+export * from './bank-account.model';
+export * from './credit-card.model';
+export * from './product-media.model';

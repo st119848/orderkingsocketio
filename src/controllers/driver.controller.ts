@@ -1,6 +1,9 @@
 import {
+  Count,
+  CountSchema,
   Filter,
   repository,
+  Where,
 } from '@loopback/repository';
 import {
   post,
@@ -8,24 +11,20 @@ import {
   get,
   getFilterSchemaFor,
   getModelSchemaRef,
+  getWhereSchemaFor,
   patch,
+  put,
   del,
   requestBody,
 } from '@loopback/rest';
-import {Driver, User} from '../models';
+import {Driver} from '../models';
 import {DriverRepository} from '../repositories';
 
 export class DriverController {
   constructor(
-    @repository(DriverRepository) protected driverRepository : DriverRepository,
+    @repository(DriverRepository)
+    public driverRepository : DriverRepository,
   ) {}
-
-  @get('/driver/{id}/users')
-  async getUser(
-    @param.path.number('id') driverId: typeof Driver.prototype.id,
-  ): Promise<User> {
-    return this.driverRepository.user(driverId);
-  }
 
   @post('/drivers', {
     responses: {

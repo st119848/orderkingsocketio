@@ -1,6 +1,7 @@
-import {belongsTo, model, property, Entity} from '@loopback/repository';
+import {belongsTo, model, property, Entity, hasMany} from '@loopback/repository';
 import {User} from '.';
 import { UserWithRelations } from './user.model';
+import {BankAccount} from './bank-account.model';
 
 @model({settings: {}})
 
@@ -30,16 +31,21 @@ export class Driver extends Entity {
   })
   id_card_photo: Buffer;
 
+  @property({
+    type: 'number',
+  })
+  userId?: number;
+
+  @hasMany(() => BankAccount)
+  bankAccounts: BankAccount[];
+
   constructor(data?: Partial<Driver>) {
     super(data);
   }
 
-  @belongsTo(() => User,{keyTo:'pk'})
-  userId: number
 }
 
 export interface DriverRelations {
-  user?: UserWithRelations
 }
 
 export type DriverWithRelations = Driver & DriverRelations;

@@ -1,16 +1,16 @@
 import {DefaultCrudRepository} from '@loopback/repository';
-import {Customer, CustomerRelations} from '../models';
+import {CreditCard, CreditCardRelations} from '../models';
 import {DbDataSource} from '../datasources';
 import {inject} from '@loopback/core';
 
-export class CustomerRepository extends DefaultCrudRepository<
-  Customer,
-  typeof Customer.prototype.id,
-  CustomerRelations
+export class CreditCardRepository extends DefaultCrudRepository<
+  CreditCard,
+  typeof CreditCard.prototype.id,
+  CreditCardRelations
 > {
   constructor(
     @inject('datasources.db') dataSource: DbDataSource,
   ) {
-    super(Customer, dataSource);
+    super(CreditCard, dataSource);
   }
 }

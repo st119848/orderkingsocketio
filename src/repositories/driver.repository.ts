@@ -1,27 +1,21 @@
-import {Driver, DriverRelations, User} from '../models';
+import {DefaultCrudRepository, repository, HasManyRepositoryFactory} from '@loopback/repository';
+import {Driver, DriverRelations, BankAccount} from '../models';
+import {DbDataSource} from '../datasources';
 import {inject, Getter} from '@loopback/core';
-import {DefaultCrudRepository, BelongsToAccessor, repository, juggler} from '@loopback/repository';
-import { UserRepository } from './user.repository';
+import {BankAccountRepository} from './bank-account.repository';
 
 export class DriverRepository extends DefaultCrudRepository<
   Driver,
   typeof Driver.prototype.id,
   DriverRelations
 > {
-  public readonly user: BelongsToAccessor<
-    User,
-    typeof Driver.prototype.id
-  >;
+
+  public readonly bankAccounts: HasManyRepositoryFactory<BankAccount, typeof Driver.prototype.id>;
 
   constructor(
-    @inject('datasources.db') public dataSource: juggler.DataSource,
-    @repository.getter('UserRepository')
-    userRepositoryGetter: Getter<UserRepository>
+    @inject('datasources.db') dataSource: DbDataSource, @repository.getter('BankAccountRepository') protected bankAccountRepositoryGetter: Getter<BankAccountRepository>,
   ) {
     super(Driver, dataSource);
-    this.user = this.createBelongsToAccessorFor(
-      'user',
-      userRepositoryGetter,
-    );
+    this.bankAccounts = this.createHasManyRepositoryFactoryFor('bankAccounts', bankAccountRepositoryGetter,);
   }
 }

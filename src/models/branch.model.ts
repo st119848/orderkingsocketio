@@ -3,6 +3,9 @@ import {Station} from './station.model';
 import {Table} from './table.model';
 import {Printer} from './printer.model';
 import {PrintLayout} from './print-layout.model';
+import {Group} from './group.model';
+import {BankAccount} from './bank-account.model';
+import {CreditCard} from './credit-card.model';
 
 @model({settings: {}})
 export class Branch extends Entity {
@@ -84,6 +87,15 @@ export class Branch extends Entity {
 
   @hasMany(() => PrintLayout)
   printLayouts: PrintLayout[];
+
+  @hasMany(() => Group)
+  groups: Group[];
+
+  @hasMany(() => BankAccount)
+  bankAccounts: BankAccount[];
+
+  @hasMany(() => CreditCard)
+  creditCards: CreditCard[];
 
   constructor(data?: Partial<Branch>) {
     super(data);

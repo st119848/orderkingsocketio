@@ -11,3 +11,8 @@ export * from './table.repository';
 export * from './printer.repository';
 export * from './print-layout.repository';
 export * from './restaurant-reward.repository';
+export * from './employee.repository';
+export * from './group.repository';
+export * from './bank-account.repository';
+export * from './credit-card.repository';
+export * from './product-media.repository';
