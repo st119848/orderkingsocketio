@@ -38,3 +38,7 @@ export * from './driver-bank-account.controller';
 export * from './product-product-media.controller';
 export * from './product-media.controller';
 export * from './customer-credit-card.controller';
+export * from './vehicle-driver.controller';
+export * from './vehicle.controller';
+export * from './branch-setting-branch.controller';
+export * from './branch-setting.controller';

@@ -16,3 +16,5 @@ export * from './group.repository';
 export * from './bank-account.repository';
 export * from './credit-card.repository';
 export * from './product-media.repository';
+export * from './vehicle.repository';
+export * from './branch-setting.repository';

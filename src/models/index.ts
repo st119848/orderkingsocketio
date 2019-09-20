@@ -16,3 +16,5 @@ export * from './group.model';
 export * from './bank-account.model';
 export * from './credit-card.model';
 export * from './product-media.model';
+export * from './vehicle.model';
+export * from './branch-setting.model';
