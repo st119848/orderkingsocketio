@@ -1,4 +1,5 @@
 import {Entity, model, property, hasMany} from '@loopback/repository';
+import {RestaurantReview} from './restaurant-review.model';
 
 @model({settings: {}})
 export class User extends Entity {
@@ -39,6 +40,9 @@ export class User extends Entity {
     required: true,
   })
   created_at: string;
+
+  @hasMany(() => RestaurantReview)
+  restaurantReviews: RestaurantReview[];
 
   constructor(data?: Partial<User>) {
     super(data);

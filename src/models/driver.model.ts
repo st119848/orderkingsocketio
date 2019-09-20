@@ -1,6 +1,7 @@
 import {belongsTo, model, property, Entity, hasMany} from '@loopback/repository';
 import {User} from '.';
 import {BankAccount} from './bank-account.model';
+import {DriverReview} from './driver-review.model';
 
 @model({settings: {}})
 
@@ -35,6 +36,9 @@ export class Driver extends Entity {
 
   @hasMany(() => BankAccount)
   bankAccounts: BankAccount[];
+
+  @hasMany(() => DriverReview)
+  driverReviews: DriverReview[];
 
   constructor(data?: Partial<Driver>) {
     super(data);

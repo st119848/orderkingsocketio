@@ -18,3 +18,6 @@ export * from './credit-card.model';
 export * from './product-media.model';
 export * from './vehicle.model';
 export * from './branch-setting.model';
+export * from './driver-review.model';
+export * from './driver-identification.model';
+export * from './restaurant-review.model';

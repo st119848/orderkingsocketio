@@ -18,3 +18,6 @@ export * from './credit-card.repository';
 export * from './product-media.repository';
 export * from './vehicle.repository';
 export * from './branch-setting.repository';
+export * from './driver-review.repository';
+export * from './driver-identification.repository';
+export * from './restaurant-review.repository';
