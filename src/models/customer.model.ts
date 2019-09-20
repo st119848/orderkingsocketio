@@ -1,6 +1,5 @@
 import {belongsTo, model, property, Entity, hasMany} from '@loopback/repository';
 import {User} from '.';
-import { UserWithRelations } from './user.model';
 import {CreditCard} from './credit-card.model';
 
 @model({settings: {}})
@@ -19,10 +18,8 @@ export class Customer extends Entity {
   })
   name: string;
 
-  @property({
-    type: 'number',
-  })
-  userId?: number;
+  @belongsTo(() => User)
+  userId: number;
 
   @hasMany(() => CreditCard)
   creditCards: CreditCard[];

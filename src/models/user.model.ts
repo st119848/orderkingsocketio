@@ -1,7 +1,4 @@
 import {Entity, model, property, hasMany} from '@loopback/repository';
-import {Customer} from './customer.model';
-import {Driver} from './driver.model';
-import {Employee} from './employee.model';
 
 @model({settings: {}})
 export class User extends Entity {
@@ -42,15 +39,6 @@ export class User extends Entity {
     required: true,
   })
   created_at: string;
-
-  @hasMany(() => Customer)
-  customers: Customer[];
-
-  @hasMany(() => Driver)
-  drivers: Driver[];
-
-  @hasMany(() => Employee)
-  employees: Employee[];
 
   constructor(data?: Partial<User>) {
     super(data);
