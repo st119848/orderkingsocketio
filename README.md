@@ -12,14 +12,19 @@ API for Orderking mobile and web application.
 $ npm install
 ```
 
-2. Run docker script to create containers.
+2. Run build
+```
+$ npm run build
+```
+
+3. Run docker script to create containers.
 ```
 $ docker-compose up -d
 ```
 
 (The first time will took some time since it download images)
 
-3. Migrate.
+4. Migrate.
 ```
 $ npm run migrate
 ```
