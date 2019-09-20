@@ -23,10 +23,10 @@ export class Employee extends Entity {
   firstname: string;
 
   @property({
-    type: 'number',
+    type: 'string',
     required: true,
   })
-  lastname: number;
+  lastname: string;
   @property({
     type: 'number',
   })
