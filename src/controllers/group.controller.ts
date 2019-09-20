@@ -1,9 +1,6 @@
 import {
-  Count,
-  CountSchema,
   Filter,
   repository,
-  Where,
 } from '@loopback/repository';
 import {
   post,
@@ -11,9 +8,7 @@ import {
   get,
   getFilterSchemaFor,
   getModelSchemaRef,
-  getWhereSchemaFor,
   patch,
-  put,
   del,
   requestBody,
 } from '@loopback/rest';

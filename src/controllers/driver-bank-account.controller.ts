@@ -12,11 +12,9 @@ import {
   getWhereSchemaFor,
   param,
   patch,
-  post,
   requestBody,
 } from '@loopback/rest';
 import {
-  Driver,
   BankAccount,
 } from '../models';
 import {DriverRepository} from '../repositories';

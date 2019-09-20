@@ -12,11 +12,9 @@ import {
   getWhereSchemaFor,
   param,
   patch,
-  post,
   requestBody,
 } from '@loopback/rest';
 import {
-  Customer,
   CreditCard,
 } from '../models';
 import {CustomerRepository} from '../repositories';

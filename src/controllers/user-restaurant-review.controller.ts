@@ -12,11 +12,9 @@ import {
   getWhereSchemaFor,
   param,
   patch,
-  post,
   requestBody,
 } from '@loopback/rest';
 import {
-  User,
   RestaurantReview,
 } from '../models';
 import {UserRepository} from '../repositories';

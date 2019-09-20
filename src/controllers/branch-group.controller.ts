@@ -12,11 +12,9 @@ import {
   getWhereSchemaFor,
   param,
   patch,
-  post,
   requestBody,
 } from '@loopback/rest';
 import {
-  Branch,
   Group,
 } from '../models';
 import {BranchRepository} from '../repositories';

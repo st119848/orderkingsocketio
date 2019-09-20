@@ -12,11 +12,9 @@ import {
   getWhereSchemaFor,
   param,
   patch,
-  post,
   requestBody,
 } from '@loopback/rest';
 import {
-  Driver,
   DriverReview,
 } from '../models';
 import {DriverRepository} from '../repositories';
