@@ -1,6 +1,9 @@
 import {
+  Count,
+  CountSchema,
   Filter,
   repository,
+  Where,
 } from '@loopback/repository';
 import {
   post,
@@ -8,7 +11,9 @@ import {
   get,
   getFilterSchemaFor,
   getModelSchemaRef,
+  getWhereSchemaFor,
   patch,
+  put,
   del,
   requestBody,
 } from '@loopback/rest';
@@ -91,6 +96,20 @@ export class DriverIdentificationController {
     driverIdentification: DriverIdentification,
   ): Promise<void> {
     await this.driverIdentificationRepository.updateById(id, driverIdentification);
+  }
+
+  @put('/driver-identifications/{id}', {
+    responses: {
+      '204': {
+        description: 'DriverIdentification PUT success',
+      },
+    },
+  })
+  async replaceById(
+    @param.path.number('id') id: number,
+    @requestBody() driverIdentification: DriverIdentification,
+  ): Promise<void> {
+    await this.driverIdentificationRepository.replaceById(id, driverIdentification);
   }
 
   @del('/driver-identifications/{id}', {
