@@ -21,3 +21,7 @@ export * from './branch-setting.model';
 export * from './driver-review.model';
 export * from './driver-identification.model';
 export * from './restaurant-review.model';
+export * from './restaurant-wallet.model';
+export * from './restaurant-transaction-history.model';
+export * from './driver-wallet.model';
+export * from './driver-transaction-history.model';

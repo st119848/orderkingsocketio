@@ -21,3 +21,7 @@ export * from './branch-setting.repository';
 export * from './driver-review.repository';
 export * from './driver-identification.repository';
 export * from './restaurant-review.repository';
+export * from './restaurant-transaction-history.repository';
+export * from './restaurant-wallet.repository';
+export * from './driver-transaction-history.repository';
+export * from './driver-wallet.repository';

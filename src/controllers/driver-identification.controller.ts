@@ -77,27 +77,6 @@ export class DriverIdentificationController {
     return this.driverIdentificationRepository.findById(id);
   }
 
-  @patch('/driver-identifications/{id}', {
-    responses: {
-      '204': {
-        description: 'DriverIdentification PATCH success',
-      },
-    },
-  })
-  async updateById(
-    @param.path.number('id') id: number,
-    @requestBody({
-      content: {
-        'application/json': {
-          schema: getModelSchemaRef(DriverIdentification, {partial: true}),
-        },
-      },
-    })
-    driverIdentification: DriverIdentification,
-  ): Promise<void> {
-    await this.driverIdentificationRepository.updateById(id, driverIdentification);
-  }
-
   @put('/driver-identifications/{id}', {
     responses: {
       '204': {
