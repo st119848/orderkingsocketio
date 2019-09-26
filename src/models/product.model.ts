@@ -34,12 +34,6 @@ export class Product extends Entity {
   })
   prepareing_time_minutes?: number;
 
-  @property({
-    type: 'string',
-    required: true,
-  })
-  category: string;
-
   @hasMany(() => ProductOption)
   productOptions: ProductOption[];
 
@@ -50,6 +44,11 @@ export class Product extends Entity {
 
   @hasMany(() => ProductMedia)
   productMedias: ProductMedia[];
+
+  @property({
+    type: 'number',
+  })
+  categoryId?: number;
 
   constructor(data?: Partial<Product>) {
     super(data);

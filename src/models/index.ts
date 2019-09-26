@@ -25,3 +25,4 @@ export * from './restaurant-wallet.model';
 export * from './restaurant-transaction-history.model';
 export * from './driver-wallet.model';
 export * from './driver-transaction-history.model';
+export * from './category.model';
