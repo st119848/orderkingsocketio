@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {
   DefaultCrudRepository,
   repository,
@@ -8,20 +9,31 @@ import { inject, Getter } from "@loopback/core";
 import { BranchRepository } from "./branch.repository";
 import { HasMany } from "loopback-datasource-juggler";
 import { ProductRepository } from "./product.repository";
+=======
+import {DefaultCrudRepository, repository, HasManyRepositoryFactory} from '@loopback/repository';
+import {Category, CategoryRelations, Product} from '../models';
+import {DbDataSource} from '../datasources';
+import {inject, Getter} from '@loopback/core';
+import {ProductRepository} from './product.repository';
+>>>>>>> add category
 
 export class CategoryRepository extends DefaultCrudRepository<
   Category,
   typeof Category.prototype.id,
   CategoryRelations
 > {
+<<<<<<< HEAD
   public readonly branch: BelongsToAccessor<
     Branch,
     typeof Category.prototype.id
   >;
+=======
+>>>>>>> add category
 
   public readonly products: HasManyRepositoryFactory<Product, typeof Category.prototype.id>;
 
   constructor(
+<<<<<<< HEAD
     @inject("datasources.db") dataSource: DbDataSource,
     @repository.getter("BranchRepository")
     protected branchRepositoryGetter: Getter<BranchRepository>, @repository.getter('ProductRepository') protected productRepositoryGetter: Getter<ProductRepository>,
@@ -32,5 +44,11 @@ export class CategoryRepository extends DefaultCrudRepository<
       "branch",
       branchRepositoryGetter
     );
+=======
+    @inject('datasources.db') dataSource: DbDataSource, @repository.getter('ProductRepository') protected productRepositoryGetter: Getter<ProductRepository>,
+  ) {
+    super(Category, dataSource);
+    this.products = this.createHasManyRepositoryFactoryFor('products', productRepositoryGetter,);
+>>>>>>> add category
   }
 }

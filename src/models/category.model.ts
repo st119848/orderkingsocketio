@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {
   Entity,
   model,
@@ -14,10 +15,22 @@ export class Category extends Entity {
     type: "number",
     id: true,
     generated: true
+=======
+import {Entity, model, property, hasMany} from '@loopback/repository';
+import {Product} from './product.model';
+
+@model({settings: {}})
+export class Category extends Entity {
+  @property({
+    type: 'number',
+    id: true,
+    generated: true,
+>>>>>>> add category
   })
   id?: number;
 
   @property({
+<<<<<<< HEAD
     type: "string",
     required: true
   })
@@ -26,6 +39,13 @@ export class Category extends Entity {
   @belongsTo(() => Branch)
   branchId: number;
 
+=======
+    type: 'string',
+    required: true,
+  })
+  name: string;
+
+>>>>>>> add category
   @hasMany(() => Product)
   products: Product[];
 

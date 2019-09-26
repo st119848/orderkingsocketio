@@ -43,12 +43,15 @@ export class Product extends Entity {
   })
   prepareing_time_minutes?: number;
 
+<<<<<<< HEAD
   @property({
     type: "string",
     required: true
   })
   category: string;
 
+=======
+>>>>>>> add category
   @hasMany(() => ProductOption)
   productOptions: ProductOption[];
 
@@ -60,6 +63,11 @@ export class Product extends Entity {
 
   @belongsTo(() => Station)
   stationId: number;
+
+  @property({
+    type: 'number',
+  })
+  categoryId?: number;
 
   @property({
     type: 'number',
