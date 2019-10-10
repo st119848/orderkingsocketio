@@ -25,3 +25,4 @@ export * from './restaurant-transaction-history.repository';
 export * from './restaurant-wallet.repository';
 export * from './driver-transaction-history.repository';
 export * from './driver-wallet.repository';
+export * from './reservation.repository';

@@ -60,3 +60,4 @@ export * from './driver-wallet-driver.controller';
 export * from './driver-wallet-driver-transaction-history.controller';
 export * from './driver-wallet.controller';
 export * from './driver-transaction-history.controller';
+export * from './reservation.controller';
