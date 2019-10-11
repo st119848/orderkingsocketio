@@ -1,11 +1,11 @@
 # Use postgres/example user/password credentials
-version: '3.1'
+version: "2"
 
 services:
   db:
     image: postgres
     restart: always
-    container_name: 'my_postgres'
+    container_name: "my_postgres"
     environment:
       POSTGRES_USER: orderking
       POSTGRES_PASSWORD: ok1234
