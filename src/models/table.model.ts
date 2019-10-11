@@ -1,34 +1,38 @@
-import {Entity, model, property} from '@loopback/repository';
+import { Entity, model, property } from "@loopback/repository";
 
-@model({settings: {}})
+@model({ settings: {} })
 export class Table extends Entity {
   @property({
-    type: 'number',
+    type: "number",
     id: true,
-    generated: true,
+    generated: true
   })
   id: number;
 
   @property({
-    type: 'string',
-    required: true,
+    type: "string",
+    required: true
   })
   table_number: string;
 
   @property({
-    type: 'string',
-    required: true,
+    type: "string",
+    required: true
   })
   description: string;
 
   @property({
-    type: 'number',
-    required: true,
+    type: "number",
+    required: true
   })
   capacity: number;
-
   @property({
-    type: 'number',
+    type: "string",
+    required: true
+  })
+  status: string;
+  @property({
+    type: "number"
   })
   branchId?: number;
 

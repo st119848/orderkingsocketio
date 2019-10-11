@@ -61,3 +61,6 @@ export * from './driver-wallet-driver-transaction-history.controller';
 export * from './driver-wallet.controller';
 export * from './driver-transaction-history.controller';
 export * from './reservation.controller';
+export * from './bills.controller';
+export * from './order.controller';
+export * from './join-table.controller';

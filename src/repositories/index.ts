@@ -26,3 +26,6 @@ export * from './restaurant-wallet.repository';
 export * from './driver-transaction-history.repository';
 export * from './driver-wallet.repository';
 export * from './reservation.repository';
+export * from './bills.repository';
+export * from './order.repository';
+export * from './join-table.repository';

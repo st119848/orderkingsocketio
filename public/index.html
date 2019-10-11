@@ -1,60 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>Orderking API</title>
 
-<head>
-  <title>Orderking API</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="//v4.loopback.io/favicon.ico"
+    />
 
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="shortcut icon" type="image/x-icon" href="//v4.loopback.io/favicon.ico">
+    <style>
+      h3 {
+        margin-left: 25px;
+        text-align: center;
+      }
 
-  <style>
-    h3 {
-      margin-left: 25px;
-      text-align: center;
-    }
+      a,
+      a:visited {
+        color: #3f5dff;
+      }
 
-    a, a:visited {
-      color: #3f5dff;
-    }
+      h3 a {
+        margin-left: 10px;
+      }
 
-    h3 a {
-      margin-left: 10px;
-    }
+      a:hover,
+      a:focus,
+      a:active {
+        color: #001956;
+      }
 
-    a:hover, a:focus, a:active {
-      color: #001956;
-    }
+      .power {
+        position: absolute;
+        bottom: 25px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
 
-    .power {
-      position: absolute;
-      bottom: 25px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
+      .info {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
 
-    .info {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%)
-    }
+      .info h1 {
+        text-align: center;
+        margin-bottom: 0;
+      }
 
-    .info h1 {
-      text-align: center;
-      margin-bottom: 0;
-    }
-
-    .info p {
-      text-align: center;
-      margin-bottom: 3em;
-      margin-top: 1em;
-    }
-  </style>
-</head>
-
-<body>
+      .info p {
+        text-align: center;
+        margin-bottom: 3em;
+        margin-top: 1em;
+      }
+    </style>
+  </head>
   <div class="info">
     <h1>orderking-api</h1>
     <p>Version 1.0.0</p>
@@ -62,12 +66,83 @@
     <h3>OpenAPI spec: <a href="/openapi.json">/openapi.json</a></h3>
     <h3>API Explorer: <a href="/explorer">/explorer</a></h3>
   </div>
+  <body>
+    <ul id="messages"></ul>
+    <form action="">
+      <input id="m" autocomplete="off" /><button>Send</button>
+    </form>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+      $(function() {
+        var data = {
+          data1: "dsfsdfsdf",
+          data2: "dsfasdfasd22222",
+          data3: "3333333"
+        };
+        var socket = io("/queue1");
+        $("form").submit(function() {
+          // socket.emit("queue1", $("#m").val());
+          socket.emit("queue1", data);
+          $("#m").val("");
+          return false;
+        });
+        function addUser(userelement) {
+          var employeeid = userelement.id;
+          console.log(employeeid + "employeeID element");
+          $("#messages").append(
+            $("<li>")
+              .text(JSON.stringify(userelement))
+              .append(
+                $("<button>")
+                  .text(JSON.stringify("delete"))
+                  .addClass("emid")
+              )
+              .attr("id", employeeid)
+          );
+          $(".emid").click(function() {
+            var deleteid = $(this)
+              .parent()
+              .attr("id");
+            console.log(deleteid + "in the .emidclick function");
+            // socket.emit("queue1", $("#m").val());
+            socket.emit("queue1delete", deleteid);
+            // $("#m").val("");
+            $(this).remove();
+            return false;
+          });
+        }
 
-  <footer class="power">
-    <a href="https://v4.loopback.io" target="_blank">
-      <img src="https://loopback.io/images/branding/powered-by-loopback/blue/powered-by-loopback-sm.png" />
-    </a>
-  </footer>
-</body>
+        socket.on("queue1", function(msg) {
+          console.log(msg.length);
+          if (msg.length > 1) {
+            msg.forEach(element => {
+              console.log(element);
+              addUser(element);
+            });
+          } else if (msg.length == 0) {
+            console.log("none user");
+          } else {
+            console.log("message in else non array", msg[0]);
+            addUser(msg[0]);
+          }
+        });
 
+        socket.on("queue1delete", function(deleteid) {
+          console.log("in the queue1delete client ", deleteid);
+          $("#" + deleteid).remove();
+        });
+
+        window.scrollTo(0, document.body.scrollHeight);
+      });
+    </script>
+
+    <footer class="power">
+      <a href="https://v4.loopback.io" target="_blank">
+        <img
+          src="https://loopback.io/images/branding/powered-by-loopback/blue/powered-by-loopback-sm.png"
+        />
+      </a>
+    </footer>
+  </body>
 </html>

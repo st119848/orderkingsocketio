@@ -26,3 +26,6 @@ export * from './restaurant-transaction-history.model';
 export * from './driver-wallet.model';
 export * from './driver-transaction-history.model';
 export * from './reservation.model';
+export * from './bills.model';
+export * from './order.model';
+export * from './join-table.model';
