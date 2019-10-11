@@ -51,7 +51,7 @@ export class OrderkingApiApplication extends BootMixin(
 
     expressApp.use("/", express.static(root));
 
-    this.httpServer = new HttpServer(expressApp, { port: 7777, host: "" });
+    this.httpServer = new HttpServer(expressApp, { port: 7867, host: "" });
     // Create ws server from the http server
     const wsServer = new WebSocketServer(this.httpServer);
     this.bind("servers.websocket.server1").to(wsServer);
@@ -74,8 +74,8 @@ export class OrderkingApiApplication extends BootMixin(
     //end socket
   }
   async start() {
-    await super.start();
     await this.wsServer.start();
+    await super.start();
   }
 
   stop() {
