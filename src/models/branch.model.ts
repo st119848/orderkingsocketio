@@ -6,6 +6,7 @@ import {PrintLayout} from './print-layout.model';
 import {Group} from './group.model';
 import {BankAccount} from './bank-account.model';
 import {CreditCard} from './credit-card.model';
+import {Order} from './order.model';
 
 @model({settings: {}})
 export class Branch extends Entity {
@@ -96,6 +97,12 @@ export class Branch extends Entity {
 
   @hasMany(() => CreditCard)
   creditCards: CreditCard[];
+
+  @hasMany(() => Order)
+  branchId: Order[];
+
+  @hasMany(() => Order)
+  orders: Order[];
 
   constructor(data?: Partial<Branch>) {
     super(data);

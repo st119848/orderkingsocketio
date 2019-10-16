@@ -19,23 +19,20 @@ import {
   RawBodyParser
 } from "@loopback/rest";
 
-import { EmployeeRepository } from "../repositories";
+import { OrderRepository } from "../repositories";
 import { Socket } from "socket.io";
 import { ws } from "../decorators/websocket.decorator";
-import { Employee } from "../models";
+import { Employee, Table, Order } from "../models";
 import { Callback, DataSource } from "loopback-datasource-juggler";
 import { log } from "util";
 import * as connect from "../datasources/db.datasource.json";
 export class WebSocketQueueController {
+  privatesocket: Socket;
   constructor(
-    @repository(
-      Employee,
-
-      new DataSource(connect)
-    )
-    public repository: EmployeeRepository,
+    @repository(Order, new DataSource(connect))
+    public repository: OrderRepository,
     @ws.socket() // Equivalent to `@inject('ws.socket')`
-    private socket: Socket // @repository(EmployeeRepository) // public employeeRepository: EmployeeRepository // @repository.getter("UserRepository") // protected userRepositoryGetter: Getter<UserRepository>
+    private socket: Socket // @repository(EmployeeRepository)
   ) {}
 
   /**
@@ -45,29 +42,27 @@ export class WebSocketQueueController {
   @ws.connect()
   async connect(socket: Socket) {
     console.log("Client join: %s", this.socket.id);
-    socket.join("rest1");
-    socket.emit("queue1", await this.repository.find());
+    socket.join("kitchen");
+    this.privatesocket = socket;
+    this.privatesocket.emit("get-initial-data", "for connect only");
+    // socket.emit("get-initial-data", () => {
+    //   return this.repository.find({ where: {} });
+    //   console.log("sdfsdfsd ");
+    // });
+    console.log("userconnect");
   }
 
   /**
    * Register a handler for 'chat message' events
    * @param msg
    */
-  @ws.subscribe("queue1")
+  @ws.subscribe("need-initial-order")
   // @ws.emit('namespace' | 'requestor' | 'broadcast')
-  async handleChatMessage(msg: unknown) {
+  async handleChatInitialOrder(msg: number) {
     try {
-      const newEmployee = new Employee({
-        photo: "string",
-        firstname: "string",
-        lastname: "string",
-        groupId: 0,
-        userId: 0
-      });
-      const reser = await this.repository.create(newEmployee);
+      //const reser = await this.repository.create(order);
       this.socket.nsp.emit(
-        "queue1",
-
+        "get-add-edit-order",
         await this.repository.find({
           order: ["id desc"],
           limit: 1
@@ -77,6 +72,58 @@ export class WebSocketQueueController {
       console.error(e.Message + "some error");
     }
   }
+  /**
+   * Register a handler for 'chat message' events
+   * @param msg
+   */
+  @ws.subscribe("add-order")
+  // @ws.emit('namespace' | 'requestor' | 'broadcast')
+  async handleChatAdd(order: Order) {
+    try {
+      const reser = await this.repository.create(order);
+      this.socket.nsp.emit(
+        "get-add-edit-order",
+        await this.repository.find({
+          order: ["id desc"],
+          limit: 1
+        })
+      );
+    } catch (e) {
+      console.error(e.Message + "some error");
+    }
+  }
+  /**
+   * Register a handler for 'chat message' events
+   * @param msg
+   */
+  @ws.subscribe("edit-order")
+  // @ws.emit('namespace' | 'requestor' | 'broadcast')
+  async handleChatEdit(order: Order) {
+    try {
+      const reser = await this.repository.update(order);
+      this.socket.nsp.emit("get-add-edit-order", order);
+    } catch (e) {
+      console.error(e.Message + "some error");
+    }
+  }
+
+  // @ws.subscribe("delete-order")
+  // // @ws.emit('namespace' | 'requestor' | 'broadcast')
+  // async handleChatDelete(msg: unknown) {
+  //   try {
+  //     // const reser = await this.repository.create(newEmployee);
+  //     this.socket.nsp.emit(
+  //       "get-delete-order",
+
+  //       await this.repository.find({
+  //         order: ["id desc"],
+  //         limit: 1
+  //       })
+  //     );
+  //   } catch (e) {
+  //     console.error(e.Message + "some error");
+  //   }
+  // }
 
   @ws.subscribe("queue1delete")
   async delete(element: unknown) {

@@ -60,7 +60,7 @@ export class OrderkingApiApplication extends BootMixin(
       next();
     });
     //Add route 2 test
-    const ns2 = wsServer.route(WebSocketQueueController, "/queue1");
+    const ns2 = wsServer.route(WebSocketQueueController, "/kitchen");
     ns2.use((socket, next) => {
       console.log(
         "Middleware for namespace %s - socket: %s",
