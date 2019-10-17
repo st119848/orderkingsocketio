@@ -74,8 +74,7 @@ export * from "./category-branch.controller";
 export * from "./branch-category.controller";
 export * from "./branch-reservation.controller";
 
-export * from "./product-branch.controller";
-export * from './product-station.controller';
-export * from './station-branch.controller';
-export * from './group-branch.controller';
-export * from './branch-product.controller';
+export * from "./product-station.controller";
+export * from "./station-branch.controller";
+export * from "./group-branch.controller";
+export * from "./branch-product.controller";
