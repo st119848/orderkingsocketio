@@ -20,6 +20,10 @@ export class Reservation extends Entity {
     required: true
   })
   guestId: number;
+  @property({
+    type: "string"
+  })
+  guestName: string;
 
   @property({
     type: "string",

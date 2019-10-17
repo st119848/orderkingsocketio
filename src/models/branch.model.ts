@@ -7,6 +7,9 @@ import {Group} from './group.model';
 import {BankAccount} from './bank-account.model';
 import {CreditCard} from './credit-card.model';
 import {Order} from './order.model';
+import {Category} from './category.model';
+import {Reservation} from './reservation.model';
+import {Product} from './product.model';
 
 @model({settings: {}})
 export class Branch extends Entity {
@@ -103,6 +106,15 @@ export class Branch extends Entity {
 
   @hasMany(() => Order)
   orders: Order[];
+
+  @hasMany(() => Category)
+  categories: Category[];
+
+  @hasMany(() => Reservation)
+  reservations: Reservation[];
+
+  @hasMany(() => Product ,{keyTo: 'stationId'})
+  products: Product[];
 
   constructor(data?: Partial<Branch>) {
     super(data);

@@ -66,6 +66,14 @@ export * from "./bills.controller";
 export * from "./join-table.controller";
 export * from "./queue.controller";
 export * from "./branch-order.controller";
-export * from './order.controller';
-export * from './order-branch.controller';
-export * from './category.controller';
+export * from "./order.controller";
+export * from "./order-branch.controller";
+export * from "./category.controller";
+
+export * from "./category-branch.controller";
+export * from "./branch-category.controller";
+export * from "./branch-reservation.controller";
+
+export * from "./product-branch.controller";
+export * from './product-station.controller';
+export * from './station-branch.controller';

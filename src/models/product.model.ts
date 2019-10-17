@@ -1,6 +1,8 @@
-import {Entity, model, property, hasMany} from '@loopback/repository';
+import {Entity, model, property, hasMany, belongsTo} from '@loopback/repository';
 import {ProductOption} from './product-option.model';
 import {ProductMedia} from './product-media.model';
+import {Branch} from './branch.model';
+import {Station} from './station.model';
 
 @model({settings: {}})
 export class Product extends Entity {
@@ -42,14 +44,14 @@ export class Product extends Entity {
 
   @hasMany(() => ProductOption)
   productOptions: ProductOption[];
-
-  @property({
-    type: 'number',
-  })
-  stationId?: number;
-
   @hasMany(() => ProductMedia)
   productMedias: ProductMedia[];
+
+  @belongsTo(() => Branch)
+  branchId: number;
+
+  @belongsTo(() => Station)
+  stationId: number;
 
   constructor(data?: Partial<Product>) {
     super(data);

@@ -19,20 +19,23 @@ import {
   RawBodyParser
 } from "@loopback/rest";
 
-import { OrderRepository } from "../repositories";
+import { OrderRepository, EmployeeRepository } from "../repositories";
 import { Socket } from "socket.io";
 import { ws } from "../decorators/websocket.decorator";
 import { Employee, Table, Order } from "../models";
 import { Callback, DataSource } from "loopback-datasource-juggler";
 import { log } from "util";
 import * as connect from "../datasources/db.datasource.json";
+
 export class WebSocketQueueController {
   privatesocket: Socket;
   constructor(
     @repository(Order, new DataSource(connect))
     public repository: OrderRepository,
     @ws.socket() // Equivalent to `@inject('ws.socket')`
-    private socket: Socket // @repository(EmployeeRepository)
+    private socket: Socket, // @repository(EmployeeRepository)
+    @repository(Employee, new DataSource(connect))
+    public employeeRepository: EmployeeRepository
   ) {}
 
   /**
@@ -44,11 +47,6 @@ export class WebSocketQueueController {
     console.log("Client join: %s", this.socket.id);
     socket.join("kitchen");
     this.privatesocket = socket;
-    this.privatesocket.emit("get-initial-data", "for connect only");
-    // socket.emit("get-initial-data", () => {
-    //   return this.repository.find({ where: {} });
-    //   console.log("sdfsdfsd ");
-    // });
     console.log("userconnect");
   }
 
@@ -58,16 +56,17 @@ export class WebSocketQueueController {
    */
   @ws.subscribe("need-initial-order")
   // @ws.emit('namespace' | 'requestor' | 'broadcast')
-  async handleChatInitialOrder(msg: number) {
+  async handleChatInitialOrder(bId: number) {
     try {
       //const reser = await this.repository.create(order);
-      this.socket.nsp.emit(
-        "get-add-edit-order",
-        await this.repository.find({
-          order: ["id desc"],
-          limit: 1
-        })
+      this.privatesocket.nsp.emit(
+        "get-initial-data",
+        await this.repository.find({ where: { branchId: bId } })
       );
+      //get Branch Id from employeeId
+      // console.log(
+      //   (await this.employeeRepository.branch(1)) + "from employee.branch"
+      // );
     } catch (e) {
       console.error(e.Message + "some error");
     }

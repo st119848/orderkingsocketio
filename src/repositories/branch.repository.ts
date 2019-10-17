@@ -13,8 +13,7 @@ import {
   Group,
   BankAccount,
   CreditCard,
-  Order
-} from "../models";
+  Order, Category, Reservation, Product} from "../models";
 import { DbDataSource } from "../datasources";
 import { inject, Getter } from "@loopback/core";
 import { StationRepository } from "./station.repository";
@@ -25,6 +24,9 @@ import { GroupRepository } from "./group.repository";
 import { BankAccountRepository } from "./bank-account.repository";
 import { CreditCardRepository } from "./credit-card.repository";
 import { OrderRepository } from "./order.repository";
+import {CategoryRepository} from './category.repository';
+import {ReservationRepository} from './reservation.repository';
+import {ProductRepository} from './product.repository';
 
 export class BranchRepository extends DefaultCrudRepository<
   Branch,
@@ -71,6 +73,12 @@ export class BranchRepository extends DefaultCrudRepository<
     typeof Branch.prototype.id
   >;
 
+  public readonly categories: HasManyRepositoryFactory<Category, typeof Branch.prototype.id>;
+
+  public readonly reservations: HasManyRepositoryFactory<Reservation, typeof Branch.prototype.id>;
+
+  public readonly products: HasManyRepositoryFactory<Product, typeof Branch.prototype.id>;
+
   constructor(
     @inject("datasources.db") dataSource: DbDataSource,
     @repository.getter("StationRepository")
@@ -88,9 +96,12 @@ export class BranchRepository extends DefaultCrudRepository<
     @repository.getter("CreditCardRepository")
     protected creditCardRepositoryGetter: Getter<CreditCardRepository>,
     @repository.getter("OrderRepository")
-    protected orderRepositoryGetter: Getter<OrderRepository>
+    protected orderRepositoryGetter: Getter<OrderRepository>, @repository.getter('CategoryRepository') protected categoryRepositoryGetter: Getter<CategoryRepository>, @repository.getter('ReservationRepository') protected reservationRepositoryGetter: Getter<ReservationRepository>, @repository.getter('ProductRepository') protected productRepositoryGetter: Getter<ProductRepository>,
   ) {
     super(Branch, dataSource);
+    this.products = this.createHasManyRepositoryFactoryFor('products', productRepositoryGetter,);
+    this.reservations = this.createHasManyRepositoryFactoryFor('reservations', reservationRepositoryGetter,);
+    this.categories = this.createHasManyRepositoryFactoryFor('categories', categoryRepositoryGetter,);
     this.orders = this.createHasManyRepositoryFactoryFor(
       "orders",
       orderRepositoryGetter
