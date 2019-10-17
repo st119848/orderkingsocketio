@@ -78,3 +78,4 @@ export * from "./product-branch.controller";
 export * from './product-station.controller';
 export * from './station-branch.controller';
 export * from './group-branch.controller';
+export * from './branch-product.controller';
