@@ -96,7 +96,7 @@ export class BranchRepository extends DefaultCrudRepository<
     @inject("datasources.db") dataSource: DbDataSource,
     @repository.getter("StationRepository")
     protected stationRepositoryGetter: Getter<StationRepository>,
-    @repository.getter("StationRepository")
+    @repository.getter("ProductRepository")
     protected productRepositoryGetter: Getter<ProductRepository>,
     @repository.getter("TableRepository")
     protected tableRepositoryGetter: Getter<TableRepository>,
