@@ -10,6 +10,8 @@ import { Order } from "./order.model";
 import { Category } from "./category.model";
 import { Reservation } from "./reservation.model";
 import { Product } from "./product.model";
+import {Bills} from './bills.model';
+import {BranchSetting} from './branch-setting.model';
 
 @model({ settings: {} })
 export class Branch extends Entity {
@@ -115,6 +117,12 @@ export class Branch extends Entity {
 
   @hasMany(() => Product, { keyTo: "branchId" })
   products: Product[];
+
+  @hasMany(() => Bills)
+  bills: Bills[];
+
+  @hasMany(() => BranchSetting)
+  branchSettings: BranchSetting[];
 
   constructor(data?: Partial<Branch>) {
     super(data);

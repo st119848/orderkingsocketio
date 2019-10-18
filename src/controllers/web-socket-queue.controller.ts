@@ -19,10 +19,14 @@ import {
   RawBodyParser
 } from "@loopback/rest";
 
-import { OrderRepository, EmployeeRepository } from "../repositories";
+import {
+  OrderRepository,
+  EmployeeRepository,
+  StationRepository
+} from "../repositories";
 import { Socket } from "socket.io";
 import { ws } from "../decorators/websocket.decorator";
-import { Employee, Table, Order } from "../models";
+import { Employee, Table, Order, Station } from "../models";
 import { Callback, DataSource } from "loopback-datasource-juggler";
 import { log } from "util";
 import * as connect from "../datasources/db.datasource.json";
@@ -35,7 +39,7 @@ export class WebSocketQueueController {
     @ws.socket() // Equivalent to `@inject('ws.socket')`
     private socket: Socket, // @repository(EmployeeRepository)
     @repository(Employee, new DataSource(connect))
-    public employeeRepository: EmployeeRepository
+    public employeeRepository: EmployeeRepository // @repository(Station, new DataSource(connect)) // public repository: StationRepository
   ) {}
 
   /**
@@ -62,7 +66,27 @@ export class WebSocketQueueController {
       this.privatesocket.nsp.emit(
         "get-initial-data",
         await this.repository.find({ where: { branchId: bId } })
+        // await this.repository.find({
+        //   include: [
+        //     {
+        //       relation: "branch",
+        //       scope: {
+        //         fields: {
+        //           id: true,
+        //           userId: true
+        //           // branch_name:true,
+        //           // station_description: true,
+        //           // ticket_printer: true,
+        //           // branchId: true
+        //         }
+        //       }
+        //     }
+        //   ]
+        // })
       );
+
+      {
+      }
       //get Branch Id from employeeId
       // console.log(
       //   (await this.employeeRepository.branch(1)) + "from employee.branch"

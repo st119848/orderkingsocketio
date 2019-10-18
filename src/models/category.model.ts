@@ -1,18 +1,18 @@
-import {Entity, model, property, belongsTo} from '@loopback/repository';
-import {Branch} from './branch.model';
+import { Entity, model, property, belongsTo } from "@loopback/repository";
+import { Branch } from "./branch.model";
 
-@model({settings: {}})
+@model({ settings: {} })
 export class Category extends Entity {
   @property({
-    type: 'number',
+    type: "number",
     id: true,
-    generated: true,
+    generated: true
   })
   id?: number;
 
   @property({
-    type: 'string',
-    required: true,
+    type: "string",
+    required: true
   })
   name: string;
 
