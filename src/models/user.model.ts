@@ -1,59 +1,52 @@
-import {Entity, model, property, hasMany} from '@loopback/repository';
-import {RestaurantReview} from './restaurant-review.model';
-<<<<<<< HEAD
-import {Order} from './order.model';
-=======
->>>>>>> e5e3a54e249e3d76583c76f5cec0a3289dc70254
+import { Entity, model, property, hasMany } from "@loopback/repository";
+import { RestaurantReview } from "./restaurant-review.model";
+import { Order } from "./order.model";
 
-@model({settings: {}})
+@model({ settings: {} })
 export class User extends Entity {
-
   @property({
-    type: 'number',
+    type: "number",
     id: true,
-    generated: true,
+    generated: true
   })
   id: number;
 
   @property({
-    type: 'string',
-    required: true,
+    type: "string",
+    required: true
   })
   email: string;
 
   @property({
-    type: 'number',
-    required: true,
+    type: "number",
+    required: true
   })
   phone_number: number;
 
   @property({
-    type: 'number',
-    required: true,
+    type: "number",
+    required: true
   })
   user_type: number;
 
   @property({
-    type: 'string',
-    required: true,
+    type: "string",
+    required: true
   })
   password: string;
 
   @property({
-    type: 'date',
-    required: true,
+    type: "date",
+    required: true
   })
   created_at: string;
 
   @hasMany(() => RestaurantReview)
   restaurantReviews: RestaurantReview[];
 
-<<<<<<< HEAD
   @hasMany(() => Order)
   orders: Order[];
 
-=======
->>>>>>> e5e3a54e249e3d76583c76f5cec0a3289dc70254
   constructor(data?: Partial<User>) {
     super(data);
   }
