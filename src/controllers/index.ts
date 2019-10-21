@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 export * from "./ping.controller";
 export * from "./user.controller";
 export * from "./customer.controller";
@@ -82,6 +81,7 @@ export * from "./branch-product.controller";
 export * from "./user-order.controller";
 export * from "./branch-bills.controller";
 export * from "./branch-branch-setting.controller";
+<<<<<<< HEAD
 export * from './category-product.controller';
 export * from './category-product.controller';
 =======
@@ -150,3 +150,5 @@ export * from './driver-transaction-history.controller';
 export * from './category-product.controller';
 export * from './category.controller';
 >>>>>>> add category
+=======
+>>>>>>> update

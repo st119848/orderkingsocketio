@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import {
   DefaultCrudRepository,
   repository,
@@ -16,6 +17,17 @@ import {DbDataSource} from '../datasources';
 import {inject, Getter} from '@loopback/core';
 import {ProductRepository} from './product.repository';
 >>>>>>> add category
+=======
+import {
+  DefaultCrudRepository,
+  repository,
+  BelongsToAccessor
+} from "@loopback/repository";
+import { Category, CategoryRelations, Branch } from "../models";
+import { DbDataSource } from "../datasources";
+import { inject, Getter } from "@loopback/core";
+import { BranchRepository } from "./branch.repository";
+>>>>>>> update
 
 export class CategoryRepository extends DefaultCrudRepository<
   Category,
@@ -23,10 +35,14 @@ export class CategoryRepository extends DefaultCrudRepository<
   CategoryRelations
 > {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> update
   public readonly branch: BelongsToAccessor<
     Branch,
     typeof Category.prototype.id
   >;
+<<<<<<< HEAD
 =======
 >>>>>>> add category
 
@@ -50,5 +66,18 @@ export class CategoryRepository extends DefaultCrudRepository<
     super(Category, dataSource);
     this.products = this.createHasManyRepositoryFactoryFor('products', productRepositoryGetter,);
 >>>>>>> add category
+=======
+
+  constructor(
+    @inject("datasources.db") dataSource: DbDataSource,
+    @repository.getter("BranchRepository")
+    protected branchRepositoryGetter: Getter<BranchRepository>
+  ) {
+    super(Category, dataSource);
+    this.branch = this.createBelongsToAccessorFor(
+      "branch",
+      branchRepositoryGetter
+    );
+>>>>>>> update
   }
 }

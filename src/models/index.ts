@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 export * from "./user.model";
 export * from "./restaurant.model";
 export * from "./driver.model";
@@ -32,6 +31,7 @@ export * from "./order.model";
 export * from "./join-table.model";
 export * from "./queue.model";
 export * from "./category.model";
+<<<<<<< HEAD
 =======
 export * from './user.model';
 export * from './restaurant.model';
@@ -62,3 +62,5 @@ export * from './driver-wallet.model';
 export * from './driver-transaction-history.model';
 export * from './category.model';
 >>>>>>> add category
+=======
+>>>>>>> update
