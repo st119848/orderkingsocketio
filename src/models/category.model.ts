@@ -1,5 +1,8 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> update
 import {
   Entity,
   model,
@@ -7,9 +10,12 @@ import {
   belongsTo,
   hasMany
 } from "@loopback/repository";
+<<<<<<< HEAD
 =======
 import { Entity, model, property, belongsTo } from "@loopback/repository";
 >>>>>>> current
+=======
+>>>>>>> update
 import { Branch } from "./branch.model";
 import { Product } from "./product.model";
 
@@ -57,6 +63,9 @@ export class Category extends Entity {
   products: Product[];
 =======
 >>>>>>> current
+
+  @hasMany(() => Product)
+  products: Product[];
 
   constructor(data?: Partial<Category>) {
     super(data);

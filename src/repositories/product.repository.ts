@@ -20,9 +20,13 @@ import { ProductMediaRepository } from "./product-media.repository";
 import { BranchRepository } from "./branch.repository";
 import { StationRepository } from "./station.repository";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { CategoryRepository } from "./category.repository";
 =======
 >>>>>>> current
+=======
+import { CategoryRepository } from "./category.repository";
+>>>>>>> update
 
 export class ProductRepository extends DefaultCrudRepository<
   Product,
@@ -39,6 +43,9 @@ export class ProductRepository extends DefaultCrudRepository<
     typeof Product.prototype.id
   >;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> update
   public readonly category: BelongsToAccessor<
     Category,
     typeof Category.prototype.id
@@ -47,8 +54,11 @@ export class ProductRepository extends DefaultCrudRepository<
     Station,
     typeof Station.prototype.id
   >;
+<<<<<<< HEAD
 =======
 >>>>>>> current
+=======
+>>>>>>> update
 
   constructor(
     @inject("datasources.db") dataSource: DbDataSource,
@@ -56,14 +66,20 @@ export class ProductRepository extends DefaultCrudRepository<
     protected productOptionRepositoryGetter: Getter<ProductOptionRepository>,
     @repository.getter("ProductMediaRepository")
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> update
     protected productMediaRepositoryGetter: Getter<ProductMediaRepository>,
     @repository.getter("CategoryRepository")
     protected categoryRepositoryGetter: Getter<CategoryRepository>,
     @repository.getter("StationRepository")
     protected stationRepositoryGetter: Getter<StationRepository>
+<<<<<<< HEAD
 =======
     protected productMediaRepositoryGetter: Getter<ProductMediaRepository>
 >>>>>>> current
+=======
+>>>>>>> update
   ) {
     super(Product, dataSource);
     this.productMedias = this.createHasManyRepositoryFactoryFor(
@@ -75,11 +91,17 @@ export class ProductRepository extends DefaultCrudRepository<
       productOptionRepositoryGetter
     );
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> update
     this.station = this.createBelongsToAccessorFor(
       "staion",
       stationRepositoryGetter
     );
+<<<<<<< HEAD
 =======
 >>>>>>> current
+=======
+>>>>>>> update
   }
 }

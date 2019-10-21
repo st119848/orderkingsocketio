@@ -10,11 +10,15 @@ import { ProductMedia } from "./product-media.model";
 import { Branch } from "./branch.model";
 import { Station } from "./station.model";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { Category } from "./category.model";
 =======
 >>>>>>> current
+=======
+import { Category } from "./category.model";
+>>>>>>> update
 
-@model({ settings: {} })
+@model({settings: {}})
 export class Product extends Entity {
   @property({
     type: "number",
@@ -78,6 +82,11 @@ export class Product extends Entity {
   categoryId?: number;
 =======
 >>>>>>> current
+
+  @property({
+    type: 'number',
+  })
+  categoryId?: number;
 
   constructor(data?: Partial<Product>) {
     super(data);

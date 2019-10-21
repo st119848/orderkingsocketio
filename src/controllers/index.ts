@@ -82,6 +82,7 @@ export * from "./user-order.controller";
 export * from "./branch-bills.controller";
 export * from "./branch-branch-setting.controller";
 <<<<<<< HEAD
+<<<<<<< HEAD
 export * from './category-product.controller';
 export * from './category-product.controller';
 =======
@@ -151,4 +152,8 @@ export * from './category-product.controller';
 export * from './category.controller';
 >>>>>>> add category
 =======
+>>>>>>> update
+=======
+export * from './category-product.controller';
+export * from './category-product.controller';
 >>>>>>> update
