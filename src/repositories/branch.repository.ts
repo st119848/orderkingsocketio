@@ -16,7 +16,10 @@ import {
   Order,
   Category,
   Reservation,
-  Product, Bills, BranchSetting} from "../models";
+  Product,
+  Bills,
+  BranchSetting
+} from "../models";
 import { DbDataSource } from "../datasources";
 import { inject, Getter } from "@loopback/core";
 import { StationRepository } from "./station.repository";
@@ -30,8 +33,8 @@ import { OrderRepository } from "./order.repository";
 import { CategoryRepository } from "./category.repository";
 import { ReservationRepository } from "./reservation.repository";
 import { ProductRepository } from "./product.repository";
-import {BillsRepository} from './bills.repository';
-import {BranchSettingRepository} from './branch-setting.repository';
+import { BillsRepository } from "./bills.repository";
+import { BranchSettingRepository } from "./branch-setting.repository";
 
 export class BranchRepository extends DefaultCrudRepository<
   Branch,
@@ -93,9 +96,15 @@ export class BranchRepository extends DefaultCrudRepository<
     typeof Branch.prototype.id
   >;
 
-  public readonly bills: HasManyRepositoryFactory<Bills, typeof Branch.prototype.id>;
+  public readonly bills: HasManyRepositoryFactory<
+    Bills,
+    typeof Branch.prototype.id
+  >;
 
-  public readonly branchSettings: HasManyRepositoryFactory<BranchSetting, typeof Branch.prototype.id>;
+  public readonly branchSettings: HasManyRepositoryFactory<
+    BranchSetting,
+    typeof Branch.prototype.id
+  >;
 
   constructor(
     @inject("datasources.db") dataSource: DbDataSource,
@@ -120,11 +129,21 @@ export class BranchRepository extends DefaultCrudRepository<
     @repository.getter("CategoryRepository")
     protected categoryRepositoryGetter: Getter<CategoryRepository>,
     @repository.getter("ReservationRepository")
-    protected reservationRepositoryGetter: Getter<ReservationRepository>, @repository.getter('BillsRepository') protected billsRepositoryGetter: Getter<BillsRepository>, @repository.getter('BranchSettingRepository') protected branchSettingRepositoryGetter: Getter<BranchSettingRepository>,
+    protected reservationRepositoryGetter: Getter<ReservationRepository>,
+    @repository.getter("BillsRepository")
+    protected billsRepositoryGetter: Getter<BillsRepository>,
+    @repository.getter("BranchSettingRepository")
+    protected branchSettingRepositoryGetter: Getter<BranchSettingRepository>
   ) {
     super(Branch, dataSource);
-    this.branchSettings = this.createHasManyRepositoryFactoryFor('branchSettings', branchSettingRepositoryGetter,);
-    this.bills = this.createHasManyRepositoryFactoryFor('bills', billsRepositoryGetter,);
+    this.branchSettings = this.createHasManyRepositoryFactoryFor(
+      "branchSettings",
+      branchSettingRepositoryGetter
+    );
+    this.bills = this.createHasManyRepositoryFactoryFor(
+      "bills",
+      billsRepositoryGetter
+    );
 
     this.reservations = this.createHasManyRepositoryFactoryFor(
       "reservations",
@@ -134,10 +153,10 @@ export class BranchRepository extends DefaultCrudRepository<
       "categories",
       categoryRepositoryGetter
     );
-    // this.registerInclusionResolver(
-    //   "categories",
-    //   this.categories.inclusionResolver
-    // );
+    this.registerInclusionResolver(
+      "categories",
+      this.categories.inclusionResolver
+    );
 
     this.orders = this.createHasManyRepositoryFactoryFor(
       "orders",
@@ -175,5 +194,6 @@ export class BranchRepository extends DefaultCrudRepository<
       "products",
       productRepositoryGetter
     );
+    this.registerInclusionResolver("products", this.products.inclusionResolver);
   }
 }
