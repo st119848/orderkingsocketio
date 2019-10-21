@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Entity, model, property, hasMany } from "@loopback/repository";
 import { Station } from "./station.model";
 import { Table } from "./table.model";
@@ -19,66 +20,133 @@ export class Branch extends Entity {
     type: "number",
     id: true,
     generated: true
+=======
+import {Entity, model, property, hasMany} from '@loopback/repository';
+import {Station} from './station.model';
+import {Table} from './table.model';
+import {Printer} from './printer.model';
+import {PrintLayout} from './print-layout.model';
+import {Group} from './group.model';
+import {BankAccount} from './bank-account.model';
+import {CreditCard} from './credit-card.model';
+
+@model({settings: {}})
+export class Branch extends Entity {
+  @property({
+    type: 'number',
+    id: true,
+    generated: true,
+>>>>>>> e5e3a54e249e3d76583c76f5cec0a3289dc70254
   })
   id: number;
 
   @property({
+<<<<<<< HEAD
     type: "string",
     required: true
+=======
+    type: 'string',
+    required: true,
+>>>>>>> e5e3a54e249e3d76583c76f5cec0a3289dc70254
   })
   branch_name: string;
 
   @property({
+<<<<<<< HEAD
     type: "number",
     required: true,
     default: 0
+=======
+    type: 'number',
+    required: true,
+    default: 0,
+>>>>>>> e5e3a54e249e3d76583c76f5cec0a3289dc70254
   })
   store_type: number;
 
   @property({
+<<<<<<< HEAD
     type: "string",
     required: true
+=======
+    type: 'string',
+    required: true,
+>>>>>>> e5e3a54e249e3d76583c76f5cec0a3289dc70254
   })
   phone_number: string;
 
   @property({
+<<<<<<< HEAD
     type: "string",
     required: true
+=======
+    type: 'string',
+    required: true,
+>>>>>>> e5e3a54e249e3d76583c76f5cec0a3289dc70254
   })
   address: string;
 
   @property({
+<<<<<<< HEAD
     type: "string",
     required: true
+=======
+    type: 'string',
+    required: true,
+>>>>>>> e5e3a54e249e3d76583c76f5cec0a3289dc70254
   })
   location: string;
 
   @property({
+<<<<<<< HEAD
     type: "string"
+=======
+    type: 'string',
+>>>>>>> e5e3a54e249e3d76583c76f5cec0a3289dc70254
   })
   about_us?: string;
 
   @property({
+<<<<<<< HEAD
     type: "object",
     default: []
+=======
+    type: 'object',
+    default: [],
+>>>>>>> e5e3a54e249e3d76583c76f5cec0a3289dc70254
   })
   covered_photos?: object;
 
   @property({
+<<<<<<< HEAD
     type: "string",
     required: true
+=======
+    type: 'string',
+    required: true,
+>>>>>>> e5e3a54e249e3d76583c76f5cec0a3289dc70254
   })
   opening_hour: string;
 
   @property({
+<<<<<<< HEAD
     type: "array",
     itemType: "string",
     required: true
+=======
+    type: 'array',
+    itemType: 'string',
+    required: true,
+>>>>>>> e5e3a54e249e3d76583c76f5cec0a3289dc70254
   })
   opening_days: string[];
 
   @property({
+<<<<<<< HEAD
     type: "number"
+=======
+    type: 'number',
+>>>>>>> e5e3a54e249e3d76583c76f5cec0a3289dc70254
   })
   restaurantId?: number;
 
@@ -103,6 +171,7 @@ export class Branch extends Entity {
   @hasMany(() => CreditCard)
   creditCards: CreditCard[];
 
+<<<<<<< HEAD
   @hasMany(() => Order)
   branchId: Order[];
 
@@ -124,6 +193,8 @@ export class Branch extends Entity {
   @hasMany(() => BranchSetting)
   branchSettings: BranchSetting[];
 
+=======
+>>>>>>> e5e3a54e249e3d76583c76f5cec0a3289dc70254
   constructor(data?: Partial<Branch>) {
     super(data);
   }

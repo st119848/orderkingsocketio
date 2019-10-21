@@ -1,6 +1,9 @@
 import {Entity, model, property, hasMany} from '@loopback/repository';
 import {RestaurantReview} from './restaurant-review.model';
+<<<<<<< HEAD
 import {Order} from './order.model';
+=======
+>>>>>>> e5e3a54e249e3d76583c76f5cec0a3289dc70254
 
 @model({settings: {}})
 export class User extends Entity {
@@ -45,9 +48,12 @@ export class User extends Entity {
   @hasMany(() => RestaurantReview)
   restaurantReviews: RestaurantReview[];
 
+<<<<<<< HEAD
   @hasMany(() => Order)
   orders: Order[];
 
+=======
+>>>>>>> e5e3a54e249e3d76583c76f5cec0a3289dc70254
   constructor(data?: Partial<User>) {
     super(data);
   }
