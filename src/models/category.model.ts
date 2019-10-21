@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import {
   Entity,
   model,
@@ -6,6 +7,9 @@ import {
   belongsTo,
   hasMany
 } from "@loopback/repository";
+=======
+import { Entity, model, property, belongsTo } from "@loopback/repository";
+>>>>>>> current
 import { Branch } from "./branch.model";
 import { Product } from "./product.model";
 
@@ -15,6 +19,7 @@ export class Category extends Entity {
     type: "number",
     id: true,
     generated: true
+<<<<<<< HEAD
 =======
 import {Entity, model, property, hasMany} from '@loopback/repository';
 import {Product} from './product.model';
@@ -26,11 +31,12 @@ export class Category extends Entity {
     id: true,
     generated: true,
 >>>>>>> add category
+=======
+>>>>>>> current
   })
   id?: number;
 
   @property({
-<<<<<<< HEAD
     type: "string",
     required: true
   })
@@ -38,6 +44,7 @@ export class Category extends Entity {
 
   @belongsTo(() => Branch)
   branchId: number;
+<<<<<<< HEAD
 
 =======
     type: 'string',
@@ -48,6 +55,8 @@ export class Category extends Entity {
 >>>>>>> add category
   @hasMany(() => Product)
   products: Product[];
+=======
+>>>>>>> current
 
   constructor(data?: Partial<Category>) {
     super(data);

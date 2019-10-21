@@ -1,23 +1,24 @@
 import {
-<<<<<<< HEAD
   Count,
   CountSchema,
   Filter,
   repository,
   Where
 } from "@loopback/repository";
+<<<<<<< HEAD
 =======
   Filter,
   repository,
 } from '@loopback/repository';
 >>>>>>> add category
+=======
+>>>>>>> current
 import {
   post,
   param,
   get,
   getFilterSchemaFor,
   getModelSchemaRef,
-<<<<<<< HEAD
   getWhereSchemaFor,
   patch,
   put,
@@ -26,6 +27,7 @@ import {
 } from "@loopback/rest";
 import { Category } from "../models";
 import { CategoryRepository } from "../repositories";
+<<<<<<< HEAD
 =======
   patch,
   del,
@@ -34,11 +36,12 @@ import { CategoryRepository } from "../repositories";
 import {Category} from '../models';
 import {CategoryRepository} from '../repositories';
 >>>>>>> add category
+=======
+>>>>>>> current
 
 export class CategoryController {
   constructor(
     @repository(CategoryRepository)
-<<<<<<< HEAD
     public categoryRepository: CategoryRepository
   ) {}
 
@@ -49,6 +52,7 @@ export class CategoryController {
         content: { "application/json": { schema: getModelSchemaRef(Category) } }
       }
     }
+<<<<<<< HEAD
 =======
     public categoryRepository : CategoryRepository,
   ) {}
@@ -61,11 +65,12 @@ export class CategoryController {
       },
     },
 >>>>>>> add category
+=======
+>>>>>>> current
   })
   async create(
     @requestBody({
       content: {
-<<<<<<< HEAD
         "application/json": {
           schema: getModelSchemaRef(Category, {
             exclude: ["id"]
@@ -74,6 +79,7 @@ export class CategoryController {
       }
     })
     category: Omit<Category, "id">
+<<<<<<< HEAD
 =======
         'application/json': {
           schema: getModelSchemaRef(Category, {exclude: ['id']}),
@@ -82,11 +88,12 @@ export class CategoryController {
     })
     category: Omit<Category, 'id'>,
 >>>>>>> add category
+=======
+>>>>>>> current
   ): Promise<Category> {
     return this.categoryRepository.create(category);
   }
 
-<<<<<<< HEAD
   @get("/categories/count", {
     responses: {
       "200": {
@@ -117,6 +124,7 @@ export class CategoryController {
   async find(
     @param.query.object("filter", getFilterSchemaFor(Category))
     filter?: Filter<Category>
+<<<<<<< HEAD
 =======
   @get('/categories', {
     responses: {
@@ -133,11 +141,12 @@ export class CategoryController {
   async find(
     @param.query.object('filter', getFilterSchemaFor(Category)) filter?: Filter<Category>,
 >>>>>>> add category
+=======
+>>>>>>> current
   ): Promise<Category[]> {
     return this.categoryRepository.find(filter);
   }
 
-<<<<<<< HEAD
   @patch("/categories", {
     responses: {
       "200": {
@@ -190,6 +199,7 @@ export class CategoryController {
       }
     })
     category: Category
+<<<<<<< HEAD
 =======
   @get('/categories/{id}', {
     responses: {
@@ -221,11 +231,12 @@ export class CategoryController {
     })
     category: Category,
 >>>>>>> add category
+=======
+>>>>>>> current
   ): Promise<void> {
     await this.categoryRepository.updateById(id, category);
   }
 
-<<<<<<< HEAD
   @put("/categories/{id}", {
     responses: {
       "204": {
@@ -248,6 +259,7 @@ export class CategoryController {
     }
   })
   async deleteById(@param.path.number("id") id: number): Promise<void> {
+<<<<<<< HEAD
 =======
   @del('/categories/{id}', {
     responses: {
@@ -258,6 +270,8 @@ export class CategoryController {
   })
   async deleteById(@param.path.number('id') id: number): Promise<void> {
 >>>>>>> add category
+=======
+>>>>>>> current
     await this.categoryRepository.deleteById(id);
   }
 }

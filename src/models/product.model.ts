@@ -9,9 +9,12 @@ import { ProductOption } from "./product-option.model";
 import { ProductMedia } from "./product-media.model";
 import { Branch } from "./branch.model";
 import { Station } from "./station.model";
+<<<<<<< HEAD
 import { Category } from "./category.model";
+=======
+>>>>>>> current
 
-@model({settings: {}})
+@model({ settings: {} })
 export class Product extends Entity {
   @property({
     type: "number",
@@ -43,7 +46,6 @@ export class Product extends Entity {
   })
   prepareing_time_minutes?: number;
 
-<<<<<<< HEAD
   @property({
     type: "string",
     required: true
@@ -63,6 +65,7 @@ export class Product extends Entity {
 
   @belongsTo(() => Station)
   stationId: number;
+<<<<<<< HEAD
 
   @property({
     type: 'number',
@@ -73,6 +76,8 @@ export class Product extends Entity {
     type: 'number',
   })
   categoryId?: number;
+=======
+>>>>>>> current
 
   constructor(data?: Partial<Product>) {
     super(data);
