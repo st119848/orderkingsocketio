@@ -81,3 +81,5 @@ export * from "./branch-product.controller";
 export * from "./user-order.controller";
 export * from "./branch-bills.controller";
 export * from "./branch-branch-setting.controller";
+export * from './category-product.controller';
+export * from './category-product.controller';

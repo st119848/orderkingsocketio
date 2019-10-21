@@ -44,7 +44,32 @@ export class CategoryProductController {
   ): Promise<Product[]> {
     return this.categoryRepository.products(id).find(filter);
   }
-  
+
+  @post('/categories/{id}/products', {
+    responses: {
+      '200': {
+        description: 'Category model instance',
+        content: {'application/json': {schema: getModelSchemaRef(Product)}},
+      },
+    },
+  })
+  async create(
+    @param.path.number('id') id: typeof Category.prototype.id,
+    @requestBody({
+      content: {
+        'application/json': {
+          schema: getModelSchemaRef(Product, {
+            title: 'NewProductInCategory',
+            exclude: ['id'],
+            optional: ['categoryId']
+          }),
+        },
+      },
+    }) product: Omit<Product, 'id'>,
+  ): Promise<Product> {
+    return this.categoryRepository.products(id).create(product);
+  }
+
   @patch('/categories/{id}/products', {
     responses: {
       '200': {

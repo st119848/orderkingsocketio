@@ -9,8 +9,9 @@ import { ProductOption } from "./product-option.model";
 import { ProductMedia } from "./product-media.model";
 import { Branch } from "./branch.model";
 import { Station } from "./station.model";
+import { Category } from "./category.model";
 
-@model({ settings: {} })
+@model({settings: {}})
 export class Product extends Entity {
   @property({
     type: "number",
@@ -50,6 +51,7 @@ export class Product extends Entity {
 
   @hasMany(() => ProductOption)
   productOptions: ProductOption[];
+
   @hasMany(() => ProductMedia)
   productMedias: ProductMedia[];
 
@@ -58,6 +60,11 @@ export class Product extends Entity {
 
   @belongsTo(() => Station)
   stationId: number;
+
+  @property({
+    type: 'number',
+  })
+  categoryId?: number;
 
   constructor(data?: Partial<Product>) {
     super(data);
