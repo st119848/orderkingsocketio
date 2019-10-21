@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { BootMixin } from "@loopback/boot";
 import { ApplicationConfig } from "@loopback/core";
 import {
@@ -20,23 +19,6 @@ export class OrderkingApiApplication extends BootMixin(
 ) {
   readonly httpServer: HttpServer;
   readonly wsServer: WebSocketServer;
-=======
-import {BootMixin} from '@loopback/boot';
-import {ApplicationConfig} from '@loopback/core';
-import {
-  RestExplorerBindings,
-  RestExplorerComponent,
-} from '@loopback/rest-explorer';
-import {RepositoryMixin} from '@loopback/repository';
-import {RestApplication} from '@loopback/rest';
-import {ServiceMixin} from '@loopback/service-proxy';
-import * as path from 'path';
-import {MySequence} from './sequence';
-
-export class OrderkingApiApplication extends BootMixin(
-  ServiceMixin(RepositoryMixin(RestApplication)),
-) {
->>>>>>> e5e3a54e249e3d76583c76f5cec0a3289dc70254
   constructor(options: ApplicationConfig = {}) {
     super(options);
 
@@ -44,19 +26,11 @@ export class OrderkingApiApplication extends BootMixin(
     this.sequence(MySequence);
 
     // Set up default home page
-<<<<<<< HEAD
     this.static("/", path.join(__dirname, "../public"));
 
     // Customize @loopback/rest-explorer configuration here
     this.bind(RestExplorerBindings.CONFIG).to({
       path: "/explorer"
-=======
-    this.static('/', path.join(__dirname, '../public'));
-
-    // Customize @loopback/rest-explorer configuration here
-    this.bind(RestExplorerBindings.CONFIG).to({
-      path: '/explorer',
->>>>>>> e5e3a54e249e3d76583c76f5cec0a3289dc70254
     });
     this.component(RestExplorerComponent);
 
@@ -65,7 +39,6 @@ export class OrderkingApiApplication extends BootMixin(
     this.bootOptions = {
       controllers: {
         // Customize ControllerBooter Conventions here
-<<<<<<< HEAD
         dirs: ["controllers"],
         extensions: [".controller.js"],
         nested: true
@@ -107,12 +80,5 @@ export class OrderkingApiApplication extends BootMixin(
 
   stop() {
     return this.wsServer.stop();
-=======
-        dirs: ['controllers'],
-        extensions: ['.controller.js'],
-        nested: true,
-      },
-    };
->>>>>>> e5e3a54e249e3d76583c76f5cec0a3289dc70254
   }
 }

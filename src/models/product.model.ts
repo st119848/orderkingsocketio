@@ -1,51 +1,50 @@
-<<<<<<< HEAD
-import {Entity, model, property, hasMany, belongsTo} from '@loopback/repository';
-import {ProductOption} from './product-option.model';
-import {ProductMedia} from './product-media.model';
-import {Branch} from './branch.model';
-import {Station} from './station.model';
-=======
-import {Entity, model, property, hasMany} from '@loopback/repository';
-import {ProductOption} from './product-option.model';
-import {ProductMedia} from './product-media.model';
->>>>>>> e5e3a54e249e3d76583c76f5cec0a3289dc70254
+import {
+  Entity,
+  model,
+  property,
+  hasMany,
+  belongsTo
+} from "@loopback/repository";
+import { ProductOption } from "./product-option.model";
+import { ProductMedia } from "./product-media.model";
+import { Branch } from "./branch.model";
+import { Station } from "./station.model";
 
-@model({settings: {}})
+@model({ settings: {} })
 export class Product extends Entity {
   @property({
-    type: 'number',
+    type: "number",
     id: true,
-    generated: true,
+    generated: true
   })
   id: number;
 
   @property({
-    type: 'string',
-    required: true,
+    type: "string",
+    required: true
   })
   item_name: string;
 
   @property({
-    type: 'string',
+    type: "string"
   })
   item_description?: string;
 
   @property({
-    type: 'number',
-    required: true,
+    type: "number",
+    required: true
   })
   price: number;
 
   @property({
-    type: 'number',
-    default: 0,
+    type: "number",
+    default: 0
   })
   prepareing_time_minutes?: number;
 
-<<<<<<< HEAD
   @property({
-    type: 'string',
-    required: true,
+    type: "string",
+    required: true
   })
   category: string;
 
@@ -59,23 +58,6 @@ export class Product extends Entity {
 
   @belongsTo(() => Station)
   stationId: number;
-=======
-  @hasMany(() => ProductOption)
-  productOptions: ProductOption[];
-
-  @property({
-    type: 'number',
-  })
-  stationId?: number;
-
-  @hasMany(() => ProductMedia)
-  productMedias: ProductMedia[];
-
-  @property({
-    type: 'number',
-  })
-  categoryId?: number;
->>>>>>> e5e3a54e249e3d76583c76f5cec0a3289dc70254
 
   constructor(data?: Partial<Product>) {
     super(data);
