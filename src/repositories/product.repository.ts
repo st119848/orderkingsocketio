@@ -66,9 +66,8 @@ export class ProductRepository extends DefaultCrudRepository<
       "productOptions",
       productOptionRepositoryGetter
     );
-
     this.station = this.createBelongsToAccessorFor(
-      "staion",
+      "station",
       stationRepositoryGetter
     );
   }
