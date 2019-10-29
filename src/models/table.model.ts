@@ -26,11 +26,25 @@ export class Table extends Entity {
     required: true
   })
   capacity: number;
+
   @property({
     type: "string",
     required: true
   })
   status: string;
+
+  @property({
+    type: "array",
+    itemType: "number"
+  })
+  customersId: [];
+
+  @property({
+    type: "array",
+    itemType: "number"
+  })
+  ordersId: [];
+
   @property({
     type: "number"
   })
