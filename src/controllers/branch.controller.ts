@@ -61,14 +61,7 @@ export class BranchController {
     //     { relation: "products", scope: { include: [{ relation: "station" }] } }
     //   ]
     // });
-    return this.branchRepository.find({
-      include: [
-        {
-          relation: "products",
-          scope: { include: [{ relation: "station" }] }
-        }
-      ]
-    });
+    return this.branchRepository.find();
   }
 
   @get("/branches/{id}", {
