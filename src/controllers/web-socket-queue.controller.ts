@@ -66,23 +66,6 @@ export class WebSocketQueueController {
       this.privatesocket.nsp.emit(
         "get-initial-data",
         await this.repository.find({ where: { branchId: bId } })
-        // await this.repository.find({
-        //   include: [
-        //     {
-        //       relation: "branch",
-        //       scope: {
-        //         fields: {
-        //           id: true,
-        //           userId: true
-        //           // branch_name:true,
-        //           // station_description: true,
-        //           // ticket_printer: true,
-        //           // branchId: true
-        //         }
-        //       }
-        //     }
-        //   ]
-        // })
       );
 
       {
@@ -103,6 +86,7 @@ export class WebSocketQueueController {
   // @ws.emit('namespace' | 'requestor' | 'broadcast')
   async handleChatAdd(order: Order) {
     try {
+      console.log("add some order");
       const reser = await this.repository.create(order);
       this.socket.nsp.emit(
         "get-add-edit-order",
