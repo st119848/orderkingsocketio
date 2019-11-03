@@ -1,51 +1,52 @@
-import {Entity, model, property, belongsTo} from '@loopback/repository';
-import {Branch} from './branch.model';
+import { Entity, model, property, belongsTo } from "@loopback/repository";
+import { Branch } from "./branch.model";
 
-@model({settings: {}})
+@model({ settings: {} })
 export class Order extends Entity {
   @property({
-    type: 'number',
+    type: "number",
     id: true,
-    generated: true,
+    generated: true
   })
   id?: number;
   @property({
-    type: 'number',
+    type: "number"
   })
   userId?: number;
 
   @property({
-    type: 'number',
+    type: "number"
   })
   table?: number;
 
   @property({
-    type: 'string',
-    required: true,
+    type: "array",
+    itemType: "object",
+    required: true
   })
-  products: string;
+  products: object[];
 
   @property({
-    type: 'date',
+    type: "date",
     required: true,
-    default: "now",
+    default: "now"
   })
   modifyTime: string;
 
   @property({
-    type: 'date',
-    default: "now",
+    type: "date",
+    default: "now"
   })
   createTime?: string;
 
   @property({
-    type: 'string',
+    type: "string"
   })
   status?: string;
 
   @property({
-    type: 'string',
-    required: true,
+    type: "string",
+    required: true
   })
   type: string;
 
