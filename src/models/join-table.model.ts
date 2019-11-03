@@ -1,43 +1,43 @@
-import {Entity, model, property} from '@loopback/repository';
+import { Entity, model, property } from "@loopback/repository";
 
-@model({settings: {}})
+@model({ settings: {} })
 export class JoinTable extends Entity {
   @property({
-    type: 'number',
+    type: "number",
     id: true,
-    generated: true,
+    generated: true
   })
   id?: number;
 
   @property({
-    type: 'number',
-    required: true,
+    type: "number",
+    required: true
   })
   tableId: number;
 
   @property({
-    type: 'number',
-    required: true,
+    type: "array",
+    itemType: "number",
+    required: true
   })
-  userId: number;
+  customersId: number[];
 
   @property({
-    type: 'date',
-    default: "now",
+    type: "date",
+    default: "now"
   })
   createTime?: string;
 
   @property({
-    type: 'boolean',
-    required: true,
+    type: "array",
+    itemType: "number"
   })
-  owner: boolean;
+  ordersId: number[];
 
   @property({
-    type: 'string',
+    type: "string"
   })
   status?: string;
-
 
   constructor(data?: Partial<JoinTable>) {
     super(data);
