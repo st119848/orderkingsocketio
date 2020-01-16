@@ -27,7 +27,7 @@ export class Group extends Entity {
     type: "number",
     required: true
   })
-  access_area: number;
+  access_area: string;
 
   @hasMany(() => Employee)
   employees: Employee[];
