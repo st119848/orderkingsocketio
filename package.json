@@ -58,7 +58,7 @@
     "socket.io": "^2.3.0"
   },
   "devDependencies": {
-    "@loopback/build": "^2.0.14",
+    "@loopback/build": "^9.0.6",
     "@loopback/eslint-config": "^4.1.2",
     "@loopback/testlab": "^1.9.2",
     "@types/node": "^10.14.22",
